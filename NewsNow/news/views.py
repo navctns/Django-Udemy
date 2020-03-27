@@ -125,6 +125,11 @@ def news_delete(request,pk):
     return redirect('news_list')
 
 def news_edit(request,pk):
+
+    if len(News.objects.filter(pk=pk))==0:
+        error="News Not Found"
+        return render(request,'back/error.html',{'error':error})
+
     news=News.objects.get(pk=pk)
 
     cat=SubCat.objects.all()

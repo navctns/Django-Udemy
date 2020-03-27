@@ -1,4 +1,8 @@
 {% extends 'back/master.html' %}
+{% load staticfiles %}
+    {% block headblock %}
+    <script src="{%static 'ckeditor/ckeditor.js' %}"></script>
+    {% endblock %}
 {% block mainblock %}
 
 <div class="content-header">
@@ -48,17 +52,25 @@
 
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <textarea type="text" id="newstxtshort" name="newstxtshort" rows="5" class="form-control" placeholder="Short txt "></textarea>
+                                                <textarea type="text" id="newstxtshort" name="newstxtshort" rows="5" class="form-control" placeholder="Short txt ">Short txt</textarea>
                                             </div>
 
                                         </div>
+                                        <script>
+                                                CKEDITOR.replace('newstxtshort');
+                                            </script>
 
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <textarea type="text" id="newstxt" name="newstxt" rows="5" class="form-control" placeholder="Body txt "></textarea>
+                                                <textarea type="text" id="newstxt" name="newstxt" rows="5" class="form-control" placeholder="Body txt ">Body txt</textarea>
+
                                             </div>
 
+
                                         </div>
+                                         <script>
+                                                CKEDITOR.replace('newstxt');
+                                            </script>
 
                                         <div class="form-group">
                                             <div class="col-md-12">

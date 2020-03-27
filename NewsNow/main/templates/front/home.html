@@ -556,7 +556,7 @@
 							<h5 class="p-b-5">
 								<a href="{%url 'news_detail' word=i.name %}" class="f1-m-3 cl2 hov-cl10 trans-03">
 									{{i.name}}
-									<p class="cl8">{{i.short_txt}}</p>
+									<p class="cl8">{{i.short_txt|safe}}</p>
 								</a>
 							</h5>
 
