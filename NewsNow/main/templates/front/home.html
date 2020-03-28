@@ -392,11 +392,12 @@
 							</div>
 						</div>
 
-						<!-- Life Style  -->
+						<!-- Life Style  --><!--Categories-->
+						{% for newscat in cat %}
 						<div class="p-b-25 m-r--10 m-r-0-sr991">
 							<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
 								<h3 class="f1-m-2 cl17 tab01-title">
-									Life Style
+									{{newscat.name}}
 								</h3>
 							</div>
 
@@ -522,6 +523,7 @@
 								</div>
 							</div>
 						</div>
+						{% endfor %}
 					</div>
 				</div>
 
