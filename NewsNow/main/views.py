@@ -5,19 +5,21 @@ from django.template import loader
 
 from .models import Main
 from news.models import News
+from cat.models import Cat
 # Create your views here.
 
 def index(request):
     sitename="Hello"
     #site=Main.objects.all()
     site=Main.objects.get(pk=1)
-    news=News.objects.all()
+    news=News.objects.all().order_by('-pk')
+    cat=Cat.objects.all()
 
     #site=Page.objects.get(pk=1)
     #template=loader.get_template('page/index.html')
     #return HttpResponse("Hello, World You are at news page")
     #return render(request,'page/index.html')
-    return render(request, 'front/home.html',{'site':site,'news':news})
+    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat})
     #return HttpResponse(template.render(request))
 
 def about(request):

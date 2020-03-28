@@ -16,6 +16,7 @@ class News(models.Model):
      catname=models.CharField(max_length=50,default='-')
      catid=models.IntegerField(default=0)
      show=models.IntegerField(default=0)
+     ocatid=models.IntegerField(default=0)#maincategory id
 
      set_name=models.TextField(default='-')
 
