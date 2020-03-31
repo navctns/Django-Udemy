@@ -16,11 +16,12 @@ def index(request):
     news=News.objects.all().order_by('-pk')
     cat=Cat.objects.all()
     subcat=SubCat.objects.all()
+    lastnews=News.objects.all().order_by('-pk')[:3]
     #site=Page.objects.get(pk=1)
     #template=loader.get_template('page/index.html')
     #return HttpResponse("Hello, World You are at news page")
     #return render(request,'page/index.html')
-    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat})
+    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews})
     #return HttpResponse(template.render(request))
 
 def about(request):
@@ -33,3 +34,6 @@ def panel(request):
 
     return render(request,'back/home.html')
 
+def my_login(request):
+
+    return render(request,'front/login.html')

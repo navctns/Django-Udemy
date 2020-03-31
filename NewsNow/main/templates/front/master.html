@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,26 +189,27 @@
 											</div>
 										</div>
 										{% for subcat2 in subcat %}
-										{% if subcat2.catid == gg.pk %}
 										<div class="tab-pane" id="{{subcat2.pk}}" role="tabpanel">
 											<div class="row">
+												{% for hh in news %}
+												{% if hh.catid == subcat2.pk %}
 												<div class="col-3">
 													<!-- Item post -->
 													<div>
 														<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-															<img src="{% static 'front/images/post-50.jpg' %}" alt="IMG">
+															<img src="{{hh.picurl}}" alt="IMG">
 														</a>
 
 														<div class="p-t-10">
 															<h5 class="p-b-5">
 																<a href="blog-detail-01.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-																	Donec metus orci, malesuada et lectus vitae
+																	{{hh.name}}
 																</a>
 															</h5>
 
 															<span class="cl8">
 																<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-																	Music
+																	{{hh.catname}}
 																</a>
 
 																<span class="f1-s-3 m-rl-3">
@@ -215,18 +217,20 @@
 																</span>
 
 																<span class="f1-s-3">
-																	Feb 18
+																	{{hh.date}}-{{hh.time}}
 																</span>
 															</span>
 														</div>
 													</div>
 												</div>
+												{% endif %}
+												{% endfor %}
 
 												<div class="col-3">
 													<!-- Item post -->
 													<div>
 														<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-															<img src="{% static 'front/images/post-08.jpg' %}" alt="IMG">
+															<img src="images/post-08.jpg" alt="IMG">
 														</a>
 
 														<div class="p-t-10">
@@ -257,7 +261,7 @@
 													<!-- Item post -->
 													<div>
 														<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-															<img src="{% static 'front/images/post-07.jpg' %}" alt="IMG">
+															<img src="images/post-07.jpg" alt="IMG">
 														</a>
 
 														<div class="p-t-10">
@@ -288,7 +292,7 @@
 													<!-- Item post -->
 													<div>
 														<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
-															<img src="{% static 'front/images/post-06.jpg' %}" alt="IMG">
+															<img src="images/post-06.jpg" alt="IMG">
 														</a>
 
 														<div class="p-t-10">
@@ -316,8 +320,8 @@
 												</div>
 											</div>
 										</div>
-										{% endif %}
 										{% endfor %}
+
 
 
 
@@ -516,3 +520,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 </body>
 </html>
+
