@@ -32,8 +32,19 @@ def about(request):
 
 def panel(request):
 
+    #login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    #login check end
     return render(request,'back/home.html')
 
 def my_login(request):
+
+    if request.method == "POST":
+
+        uuser=request.POST.get('username')
+        upass=request.POST.get('password')
+
+        print(uuser,upass)
 
     return render(request,'front/login.html')

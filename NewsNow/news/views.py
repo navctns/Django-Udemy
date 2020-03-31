@@ -18,10 +18,20 @@ def news_detail(request,word):
 
 def news_list(request):
 
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+
     news=News.objects.all()
     return render(request,'back/news_list.html',{'news':news})
 
 def news_add(request):
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+
     
     print("-------------------")
 
@@ -120,6 +130,12 @@ def news_add(request):
     return render(request,'back/news_add.html',{'cat':cat})
 
 def news_delete(request,pk):
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+
     try:
         b=News.objects.get(pk=pk)
         fs=FileSystemStorage()
@@ -139,6 +155,11 @@ def news_delete(request,pk):
     return redirect('news_list')
 
 def news_edit(request,pk):
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
 
     if len(News.objects.filter(pk=pk))==0:
         error="News Not Found"
