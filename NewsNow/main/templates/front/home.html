@@ -394,6 +394,7 @@
 
 						<!-- Life Style  --><!--Categories-->
 						{% for newscat in cat %}
+						{% if newscat.count != 0 %}
 						<div class="p-b-25 m-r--10 m-r-0-sr991">
 							<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
 								<h3 class="f1-m-2 cl17 tab01-title">
@@ -404,21 +405,24 @@
 							<div class="row p-t-35">
 								<div class="col-sm-6 p-r-25 p-r-15-sr991">
 									<!-- Item post -->
+									{% for ab in news %}
+									<!--check category id of the news with category id-->
+									{% if newscat.pk == ab.ocatid %}
 									<div class="flex-wr-sb-s m-b-30">
-										<a href="blog-detail-02.html" class="size-w-1 wrap-pic-w hov1 trans-03">
-											<img src="{% static 'front/images/post-25.jpg' %}" alt="IMG">
+										<a href={%url 'news_detail' word=ab.name %} class="size-w-1 wrap-pic-w hov1 trans-03">
+											<img src="{{ab.picurl}}" alt="IMG">
 										</a>
 
 										<div class="size-w-2">
 											<h5 class="p-b-5">
-												<a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
-													Donec metus orci, malesuada et lectus vitae
+												<a href="{%url 'news_detail' word=ab.name %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+													{{ab.name}}
 												</a>
 											</h5>
 
 											<span class="cl8">
 												<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-													Beach
+													{{ab.catname}}
 												</a>
 
 												<span class="f1-s-3 m-rl-3">
@@ -426,11 +430,13 @@
 												</span>
 
 												<span class="f1-s-3">
-													Feb 17
+													{{ab.date}}|{{ab.time}}
 												</span>
 											</span>
 										</div>
 									</div>
+									{% endif %}
+									{% endfor %}
 
 									<!-- Item post -->
 									<div class="flex-wr-sb-s m-b-30">
@@ -520,9 +526,39 @@
 											</span>
 										</div>
 									</div>
+
+									<div class="flex-wr-sb-s m-b-30">
+										<a href="blog-detail-02.html" class="size-w-1 wrap-pic-w hov1 trans-03">
+											<img src="{% static 'front/images/post-27.jpg' %}" alt="IMG">
+										</a>
+
+										<div class="size-w-2">
+											<h5 class="p-b-5">
+												<a href="blog-detail-02.html" class="f1-s-5 cl3 hov-cl10 trans-03">
+													Donec metus orci, malesuada et lectus vitae
+												</a>
+											</h5>
+
+											<span class="cl8">
+												<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+													Flight
+												</a>
+
+												<span class="f1-s-3 m-rl-3">
+													-
+												</span>
+
+												<span class="f1-s-3">
+													Feb 16
+												</span>
+											</span>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
+						{% endif %}
 						{% endfor %}
 					</div>
 				</div>
