@@ -1,6 +1,9 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth import authenticate,login,logout
+
+
 
 
 from .models import Main
@@ -42,9 +45,33 @@ def my_login(request):
 
     if request.method == "POST":
 
-        uuser=request.POST.get('username')
-        upass=request.POST.get('password')
+        utxt=request.POST.get('username')
+        ptxt=request.POST.get('password')
 
-        print(uuser,upass)
+        if utxt != "" and ptxt != "":
+
+            user=authenticate(username=utxt,password=ptxt)#authenticate() will return none if it is not
+            #authenticated, (credentials are wrong)
+
+            if user!= None:
+                login(request,user)
+                return redirect('panel')
+
 
     return render(request,'front/login.html')
+
+def my_logout(request):
+
+    logout(request)
+
+    return redirect('my_login')
+
+def site_setting(request):
+
+    site=Main.objects.get(pk=2)
+
+    return render(request,'back/setting.html',{'site':site})
+
+
+
+

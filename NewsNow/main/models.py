@@ -12,6 +12,8 @@ class Main(models.Model):
      yt=models.CharField(default='-',max_length=30)
      tell=models.CharField(default='-',max_length=30)
      link=models.CharField(default='-',max_length=30)
+     picurl=models.TextField(default="")
+     picname=models.TextField(default="")
 
      set_name=models.TextField(default='-')
 
