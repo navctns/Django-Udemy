@@ -33,7 +33,7 @@
                                     <!-- END Form Elements Title -->
 
                                     <!-- Basic Form Elements Content -->
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                    <form action="{%url 'site_setting' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <div class="col-md-6">
@@ -81,8 +81,20 @@
 
 
                                         <div class="form-group">
-                                            <div class="col-md-12">
-                                                <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="upload file "></input>
+                                            <div class="col-md-6">
+                                                <input type="file" id="myfile" name="myfile"  class="form-control" placeholder="{{news.picurl}}"></input>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img style="display:inline-block; width:200px; height:200px;" src="{{site.picurl}}"/>
+                                            </div>
+
+                                        </div>
+                                         <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="file" id="myfile2" name="myfile2"  class="form-control" placeholder="{{news.picurl2}}"></input>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img style="display:inline-block; width:200px; height:200px;" src="{{site.picurl2}}"/>
                                             </div>
 
                                         </div>

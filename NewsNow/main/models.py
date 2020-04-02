@@ -15,6 +15,9 @@ class Main(models.Model):
      picurl=models.TextField(default="")
      picname=models.TextField(default="")
 
+     picurl2=models.TextField(default="")
+     picname2=models.TextField(default="")
+
      set_name=models.TextField(default='-')
 
 
