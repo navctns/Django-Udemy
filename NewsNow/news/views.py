@@ -13,8 +13,28 @@ from subcat.models import SubCat
 def news_detail(request,word):
 
     site=Main.objects.get(pk=3)
-    news=News.objects.filter(name=word)
-    return render(request,'front/news_detail.html',{'news':news,'site':site})
+
+
+    shownews=News.objects.filter(name=word)
+    site = Main.objects.get(pk=2)
+    news = News.objects.all().order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    #popular news based on shows
+    popnews = News.objects.all().order_by('-show')
+    popnews2 = News.objects.all().order_by('-show')[:3]#show only latest 3 items
+    tagname=News.objects.get(name=word).tag
+    tag=tagname.split(',')
+    try:
+        mynews=News.objects.get(name=word)
+        mynews.show=mynews.show + 1
+        mynews.save()
+    except:
+        print("Can't add Show")
+
+    return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
 
 def news_list(request):
 
@@ -79,6 +99,8 @@ def news_add(request):
         newstxtshort=request.POST.get('newstxtshort')
         newstxt=request.POST.get('newstxt')
         newsid=request.POST.get('newscat')
+        tag=request.POST.get("tag")
+
 
         error="All Fields Required"
         #if newstitle=="" or newscat=="":
@@ -100,7 +122,7 @@ def news_add(request):
                     ocatid=SubCat.objects.get(pk=newsid).catid#get catid from subcategory of news
                     b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today,time=time, picname=filename,
                          picurl=url, writer="-", catname=newsname,
-                         catid=newsid, show=0,ocatid=ocatid)
+                         catid=newsid, show=0,ocatid=ocatid,tag=tag)
                     b.save()
 
                     #count of the newses with the ocatid(extracted from subcategory-previous)
@@ -178,6 +200,7 @@ def news_edit(request,pk):
         newstxtshort = request.POST.get('newstxtshort')
         newstxt = request.POST.get('newstxt')
         newsid = request.POST.get('newscat')
+        tag = request.POST.get("tag")
 
         error = "All Fields Required"
         # if newstitle=="" or newscat=="":
@@ -208,6 +231,7 @@ def news_edit(request,pk):
                     b.picurl=url
                     b.catname=newsname
                     b.catid=newsid
+                    b.tag=tag
                     b.save()
                     return redirect('news_list')
                 else:
@@ -230,6 +254,7 @@ def news_edit(request,pk):
             b.body_txt = newstxt
             b.catname = newsname
             b.catid = newsid
+            b.tag=tag
             b.save()
             return redirect('news_list')
 

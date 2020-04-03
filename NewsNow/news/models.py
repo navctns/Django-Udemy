@@ -17,6 +17,7 @@ class News(models.Model):
      catid=models.IntegerField(default=0)
      show=models.IntegerField(default=0)
      ocatid=models.IntegerField(default=0)#maincategory id
+     tag=models.TextField(default="")
 
      set_name=models.TextField(default='-')
 
