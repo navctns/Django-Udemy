@@ -9,5 +9,7 @@ urlpatterns=[
     path('login/',views.my_login,name='my_login'),
     path('logout/',views.my_logout,name='my_logout'),
     path('panel/setting/', views.site_setting, name='site_setting'),
+    path('panel/about/setting/', views.about_setting, name='about_setting'),
+    path('contact/',views.contact,name='contact'),
 
 ]

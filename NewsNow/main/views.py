@@ -33,9 +33,48 @@ def index(request):
 
 def about(request):
 
-    site=Main.objects.get(pk=2)
+
+
+    site = Main.objects.get(pk=2)
+    news = News.objects.all().order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    popnews = News.objects.all().order_by('-show')
+    popnews2 = News.objects.all().order_by('-show')[:3]
     #sitename="About Page"
-    return render(request,'front/about.html',{'site':site})
+    return render(request,'front/about.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2})
+
+def about_setting(request):
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+    site = Main.objects.get(pk=2)
+    about=Main.objects.get(pk=2).abouttxt
+
+    if request.method == 'POST':
+
+        txt=request.POST.get('txt')
+
+        if txt=="":
+            error = "About field can't be empty"
+            return render(request, 'back/error.html', {'error': error})
+        b=Main.objects.get(pk=2)
+        b.abouttxt=txt
+        b.save()
+
+    return render(request,'back/about_setting.html',{'about':about,'site':site})
+
+def contact(request):
+    site = Main.objects.get(pk=2)
+    news = News.objects.all().order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    popnews2 = News.objects.all().order_by('-show')[:3]
+
+    return render(request,'front/contact.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2})
 
 def panel(request):
 
