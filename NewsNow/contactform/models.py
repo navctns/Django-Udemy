@@ -9,6 +9,8 @@ class ContactForm(models.Model):
      name=models.CharField(max_length=50)
      email = models.CharField(max_length=50)
      txt=models.TextField()
+     date=models.CharField(max_length=12,default="")
+     time=models.CharField(max_length=12,default="")
 
 
      set_name = models.TextField(default='-')
