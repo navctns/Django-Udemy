@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate,login,logout
 from django.core.files.storage import FileSystemStorage
-
+import random
+from random import randint
 
 
 
@@ -12,6 +13,8 @@ from .models import Main
 from news.models import News
 from cat.models import Cat
 from subcat.models import SubCat
+from trending.models import Trending
+
 # Create your views here.
 
 def index(request):
@@ -24,11 +27,14 @@ def index(request):
     lastnews=News.objects.all().order_by('-pk')[:3]
     popnews = News.objects.all().order_by('-show')
     popnews2 = News.objects.all().order_by('-show')[:3]
+    trending=Trending.objects.all().order_by('-pk')
+    random_object=Trending.objects.all()[randint(0,len(trending)-1)]#to show random trendings
+    print(random_object)
     #site=Page.objects.get(pk=1)
     #template=loader.get_template('page/index.html')
     #return HttpResponse("Hello, World You are at news page")
     #return render(request,'page/index.html')
-    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews':popnews,'popnews2':popnews2})
+    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews':popnews,'popnews2':popnews2,'trending':trending})
     #return HttpResponse(template.render(request))
 
 def about(request):
@@ -42,8 +48,9 @@ def about(request):
     lastnews = News.objects.all().order_by('-pk')[:3]
     popnews = News.objects.all().order_by('-show')
     popnews2 = News.objects.all().order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')
     #sitename="About Page"
-    return render(request,'front/about.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2})
+    return render(request,'front/about.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'trending':trending})
 
 def about_setting(request):
     # login check start
@@ -73,8 +80,9 @@ def contact(request):
     subcat = SubCat.objects.all()
     lastnews = News.objects.all().order_by('-pk')[:3]
     popnews2 = News.objects.all().order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')
 
-    return render(request,'front/contact.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2})
+    return render(request,'front/contact.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'trending':trending})
 
 def panel(request):
 
@@ -216,6 +224,33 @@ def site_setting(request):
     site=Main.objects.get(pk=2)
 
     return render(request,'back/setting.html',{'site':site})
+
+def change_pass(request):
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+
+    if request.method == "POST":
+
+        oldpass=request.POST.get("oldpass")
+        newpass=request.POST.get("newpass")
+
+        if oldpass =="" or newpass =="":
+            error = "All Fields are required"
+            return render(request, 'back/error.html', {'error': error})
+        print(request.user)
+        user=authenticate(username=request.user,password=oldpass)
+        if user != None:
+            print("okokokokokok")
+
+        else:
+            error = "Your Password is not correct"
+            return render(request, 'back/error.html', {'error': error})
+            print("nononononono")
+
+
+    return render(request,'back/changepass.html')
 
 
 

@@ -23,6 +23,8 @@ urlpatterns = [
     path('',include('cat.urls')),
     path('', include('subcat.urls')),
     path('', include('contactform.urls')),
+    path('', include('trending.urls')),
+
     path('admin/', admin.site.urls),
 ]
 

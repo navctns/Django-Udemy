@@ -11,5 +11,6 @@ urlpatterns=[
     path('panel/setting/', views.site_setting, name='site_setting'),
     path('panel/about/setting/', views.about_setting, name='about_setting'),
     path('contact/',views.contact,name='contact'),
+    path('panel/change/pass/', views.change_pass, name='change_pass'),
 
 ]

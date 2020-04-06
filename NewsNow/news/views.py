@@ -9,6 +9,7 @@ import datetime
 from convertdate import french_republican
 from cat.models import Cat
 from subcat.models import SubCat
+from trending.models import Trending
 
 def news_detail(request,word):
 
@@ -21,6 +22,7 @@ def news_detail(request,word):
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
     lastnews = News.objects.all().order_by('-pk')[:3]
+    trending = Trending.objects.all().order_by('-pk')
     #popular news based on shows
     popnews = News.objects.all().order_by('-show')
     popnews2 = News.objects.all().order_by('-show')[:3]#show only latest 3 items
@@ -34,7 +36,7 @@ def news_detail(request,word):
         print("Can't add Show")
 
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
-                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending})
 
 def news_list(request):
 
