@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate,login,logout
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.models import User
 import random
 from random import randint
 
@@ -191,7 +192,7 @@ def site_setting(request):
 
                 else:
                     error = "File is Bigger than 1 MB"
-                    return render(request, 'back/error.html', {'error': error})
+
 
             else:
                 fs = FileSystemStorage()
@@ -242,7 +243,36 @@ def change_pass(request):
         print(request.user)
         user=authenticate(username=request.user,password=oldpass)
         if user != None:
-            print("okokokokokok")
+            #print("okokokokokok")
+            if len(newpass)<8:
+                error="Your password must have at least 8 characters"
+
+                return render(request, 'back/error.html', {'error': error})
+            count1=0
+            count2=0
+            count3=0
+            count4=0
+            for i in newpass:
+                if i>="0" and i<="9":
+                    count1=1
+                if i>="A" and i<="Z":
+                    count2=1
+                if i>"a" and i<="z":
+                    count3=1
+                if i>="!" and i<="[":
+                    count4=1
+            print(count1,count2,count3,count4)
+            if count1==1 and count2 ==1 and count3 ==1 and count4 ==1:
+
+                user=User.objects.get(username=request.user)
+                user.set_password(newpass)
+                user.save()
+                return redirect('my_logout')
+            else:
+                error = "Your password must contain atleast one for each of them(UppserCase,Lowercase,Digit,SpecialCharacter)"
+
+                return render(request, 'back/error.html', {'error': error})
+
 
         else:
             error = "Your Password is not correct"
@@ -251,6 +281,50 @@ def change_pass(request):
 
 
     return render(request,'back/changepass.html')
+
+def my_register(request):
+
+    if request.method =="POST":
+        uname=request.POST.get('uname')
+        email=request.POST.get('email')
+        password1=request.POST.get('password1')
+        password2=request.POST.get('password2')
+        print(uname,email,password1,password2)
+
+        if len(password1) >= 8:
+
+            #password strength check
+            count1 = 0
+            count2 = 0
+            count3 = 0
+            count4 = 0
+            for i in password1:
+                if i >= "0" and i <= "9":
+                    count1 = 1
+                if i >= "A" and i <= "Z":
+                    count2 = 1
+                if i > "a" and i <= "z":
+                    count3 = 1
+                if i >= "!" and i <= "[":
+                    count4 = 1
+            print(count1, count2, count3, count4)
+            if count1 == 1 and count2 == 1 and count3 == 1 and count4 == 1:
+
+                #verify pass
+                if password1 != password2:
+                    msg = "Your password didn't Match"
+                    return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
+            else:
+                msg = "Your Password is not strong"
+                return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
+        else:
+            msg = "Your Password Must have Atleast 8 Characters"
+            return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
+    return render(request,'front/login.html')
+
 
 
 
