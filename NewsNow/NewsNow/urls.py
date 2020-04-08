@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('subcat.urls')),
     path('', include('contactform.urls')),
     path('', include('trending.urls')),
+    path('', include('manager.urls')),
 
     path('admin/', admin.site.urls),
 ]

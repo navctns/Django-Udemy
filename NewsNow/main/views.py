@@ -9,7 +9,7 @@ from random import randint
 
 
 
-
+from manager.models import Manager
 from .models import Main
 from news.models import News
 from cat.models import Cat
@@ -285,11 +285,17 @@ def change_pass(request):
 def my_register(request):
 
     if request.method =="POST":
+        name=request.POST.get('name')
         uname=request.POST.get('uname')
         email=request.POST.get('email')
         password1=request.POST.get('password1')
         password2=request.POST.get('password2')
         print(uname,email,password1,password2)
+
+        if name=="":
+            msg = "Enter your Name"
+            return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
 
         if len(password1) >= 8:
 
@@ -322,6 +328,19 @@ def my_register(request):
         else:
             msg = "Your Password Must have Atleast 8 Characters"
             return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
+        #check for the existing users
+        if len(User.objects.filter(username=uname))==0 and len(User.objects.filter(email=email))==0:
+
+            #create user
+            user=User.objects.create_user(username=uname,email=email,password=password1)
+            b=Manager(name=name,utxt=uname,email=email)
+            b.save()
+
+        else:
+            msg = "Username or Password is Already Exists"
+            return render(request, 'front/contactform/msgbox.html', {'msg': msg})
+
 
     return render(request,'front/login.html')
 
