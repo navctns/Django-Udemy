@@ -11,6 +11,7 @@ urlpatterns=[
     path('panel/manager/group/del/<name>', views.manager_group_del, name='manager_group_del'),
     path('panel/manager/group/show/<pk>', views.user_groups, name='user_groups'),
     path('panel/manager/addtogroup/<pk>', views.add_user_to_groups, name='add_user_to_groups'),
+    path('panel/manager/delgroup/<pk>/<name>', views.del_user_from_groups, name='del_user_from_groups'),
 
 ]
 

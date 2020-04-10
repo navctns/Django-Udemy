@@ -25,14 +25,7 @@
                                             <div class="col-md-6">
                                                 <input type="text" id="name" name="name" class="form-control" placeholder="group name" required>
                                             </div>
-                                             <div class="col-md-6">
-                                                    <select id="group" name="group" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
-                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
-                                                        {% for i in group %}
-                                                       <option value="{{i.pk}}">{{i.name}}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
+
 
 
 
