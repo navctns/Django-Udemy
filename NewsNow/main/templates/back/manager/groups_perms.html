@@ -8,36 +8,41 @@
                         <div class="content-header">
                             <div class="header-section">
                                 <h1>
-                                    <i class="fa fa-table"></i>Manager Group<br><small>Lists out the newses with details and status of it</small>
+                                    <i class="fa fa-table"></i>Group's Permissions<br><small>Lists out the Permissions to groups</small>
                                 </h1>
                             </div>
                         </div>
                         <ul class="breadcrumb breadcrumb-top">
-                            <li>Manager</li>
-                            <li><a href="">Group</a></li>
+                            <li>Groups</li>
+                            <li><a href="">Permissions</a></li>
                         </ul>
 
 
                         <!-- Basic Form Elements Content -->
-                                    <form action="{%url 'manager_group_add' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                    <form action="{%url 'groups_perms_add' name=name %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                                         {% csrf_token %}
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <input type="text" id="name" name="name" class="form-control" placeholder="group name" required>
-                                            </div>
+                                           <div class="col-md-6">
+                                                    <select id="pname" name="pname" class="select-chosen" data-placeholder="Choose a Permission.." style="width: 250px;">
+                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                                        {% for i in allperms %}
+                                                       <option value="{{i.name}}">{{i.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
 
-
-
-
-
-                                        </div>
-
-
-                                        <div class="form-group">
-                                              <div class="col-md-12">
+                                              <div class="col-md-6">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                               </div>
                                         </div>
+
+
+
+
+                                        </div>
+
+
+
 
 
                                     </form>
@@ -62,13 +67,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% for cc in group %}
+                                    {% for cc in perms %}
                                         <tr>
                                             <td>{{cc.name}}</td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="{%url 'groups_perms' name=cc.name %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Perms</i></a>
-                                                    <a href="{%url 'manager_group_del' name=cc.name %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                    <a href="{%url 'groups_perms_del' gname=name name=cc.name %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
                                                 </div>
                                             </td>
                                         </tr>
