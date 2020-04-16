@@ -33,6 +33,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Writer</th>
+                                            <th>Status</th>
                                             <th>views</th>
                                             <th class="text-center"></th>
                                         </tr>
@@ -46,10 +47,18 @@
                                             <td>{{cc.name}}</td>
                                             <td>{{cc.catname}}</td><!--change to main category-->
                                             <td>{{cc.writer}}</td>
-                                            <td><span class="label label-info">100</span></td>
+                                            {% if cc.act == 0 %}
+                                            <td>Pending</td>
+                                            {% elif cc.act == 1 %}
+                                            <td>Confirmed</td>
+                                            {% endif %}
+                                            <td><span class="label label-info">{{cc.show}}</span></td>
                                             <td class="text-center">
                                                 <div class="btn-group">
                                                     <a href="{%url 'news_edit' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Edit</i></a>
+                                                    {% if perms.main.masteruser %}
+                                                    <a href="{%url 'news_publish' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i>Confirm</i></a>
+                                                    {% endif %}
                                                     <a href="{%url 'news_delete' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
                                                 </div>
                                             </td>

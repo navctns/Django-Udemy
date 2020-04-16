@@ -45,7 +45,18 @@ def news_list(request):
         return redirect('my_login')
     # login check end
 
-    news=News.objects.all()
+    # set access to news
+    perm = 0
+    for i in request.user.groups.all():
+
+        if i.name == "masteruser":
+            perm = 1
+    if perm == 0:
+        news = News.objects.filter(writer=request.user)
+    elif perm == 1:
+        news = News.objects.all()
+    # end set access to news
+
     return render(request,'back/news_list.html',{'news':news})
 
 def news_add(request):
@@ -123,7 +134,7 @@ def news_add(request):
                     newsname = SubCat.objects.get(pk=newsid).name
                     ocatid=SubCat.objects.get(pk=newsid).catid#get catid from subcategory of news
                     b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today,time=time, picname=filename,
-                         picurl=url, writer="-", catname=newsname,
+                         picurl=url, writer=request.user, catname=newsname,
                          catid=newsid, show=0,ocatid=ocatid,tag=tag)
                     b.save()
 
@@ -234,6 +245,7 @@ def news_edit(request,pk):
                     b.catname=newsname
                     b.catid=newsid
                     b.tag=tag
+                    b.act=0
                     b.save()
                     return redirect('news_list')
                 else:
@@ -257,6 +269,7 @@ def news_edit(request,pk):
             b.catname = newsname
             b.catid = newsid
             b.tag=tag
+            b.act=0
             b.save()
             return redirect('news_list')
 
@@ -265,3 +278,17 @@ def news_edit(request,pk):
 
 
     return render(request,'back/news_edit.html',{'pk':pk,'news':news,"cat":cat})
+
+
+def news_publish(request,pk):
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('my_login')
+    # login check end
+    news = News.objects.get(pk = pk)
+    news.act = 1
+    news.save()
+
+
+    return redirect('news_list')

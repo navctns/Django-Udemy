@@ -18,16 +18,16 @@ from trending.models import Trending
 
 # Create your views here.
 
-def index(request):
+def home(request):
     sitename="Hello"
     #site=Main.objects.all()
-    site=Main.objects.get(pk=2)
-    news=News.objects.all().order_by('-pk')
+    site=Main.objects.get(pk= 2)
+    news=News.objects.filter(act=1).order_by('-pk')
     cat=Cat.objects.all()
     subcat=SubCat.objects.all()
-    lastnews=News.objects.all().order_by('-pk')[:3]
-    popnews = News.objects.all().order_by('-show')
-    popnews2 = News.objects.all().order_by('-show')[:3]
+    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews = News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     trending=Trending.objects.all().order_by('-pk')
     random_object=Trending.objects.all()[randint(0,len(trending)-1)]#to show random trendings
     print(random_object)
