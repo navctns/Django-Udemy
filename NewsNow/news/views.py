@@ -171,6 +171,22 @@ def news_delete(request,pk):
         return redirect('my_login')
     # login check end
 
+    # set access to news
+    perm = 0
+
+    for i in request.user.groups.all():
+
+        if i.name == "masteruser":
+                perm = 1
+    if perm == 0:
+        # to only show news of that writer
+        a = News.objects.get(pk = pk).writer
+        if str(a) != str(request.user):
+            error = "Access Denied"
+            return render(request, 'back/error.html', {'error': error})
+
+    # end set access to news
+
     try:
         b=News.objects.get(pk=pk)
         fs=FileSystemStorage()

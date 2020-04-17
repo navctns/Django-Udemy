@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('contactform.urls')),
     path('', include('trending.urls')),
     path('', include('manager.urls')),
-
+    path('', include('newsletter.urls')),
     path('admin/', admin.site.urls),
 ]
 
