@@ -10,6 +10,7 @@ from convertdate import french_republican
 from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
+import random
 
 def news_detail(request,word):
 
@@ -85,6 +86,18 @@ def news_add(request):
     today=str(year)+ "/" + str(month) + "/" + str(day)
     time=str(hours)+":"+str(minutes)
     print(time)
+    date = str(year)+str(month)+str(day)
+    randint = str(random.randint(1000,9999))
+    rand = date + randint
+    rand = int(rand)
+
+    #to avoid repeatation
+    while len(News.objects.filter(rand = rand)) != 0:
+        randint = str(random.randint(1000, 9999))
+        rand = date + randint
+        rand = int(rand)
+
+
 
     #now = datetime.datetime.now()-datetime.timedelta(days=10) #get the date before 10 days
     """
@@ -135,7 +148,7 @@ def news_add(request):
                     ocatid=SubCat.objects.get(pk=newsid).catid#get catid from subcategory of news
                     b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today,time=time, picname=filename,
                          picurl=url, writer=request.user, catname=newsname,
-                         catid=newsid, show=0,ocatid=ocatid,tag=tag)
+                         catid=newsid, show=0,ocatid=ocatid,tag=tag, rand = rand)
                     b.save()
 
                     #count of the newses with the ocatid(extracted from subcategory-previous)

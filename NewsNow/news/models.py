@@ -19,6 +19,7 @@ class News(models.Model):
      ocatid=models.IntegerField(default=0)#maincategory id
      tag=models.TextField(default="")
      act=models.IntegerField(default=0)# For publishting/unpublishing news
+     rand = models.IntegerField(default = 0)
 
 
      set_name=models.TextField(default='-')
