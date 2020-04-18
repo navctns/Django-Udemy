@@ -26,6 +26,8 @@ urlpatterns = [
     path('', include('trending.urls')),
     path('', include('manager.urls')),
     path('', include('newsletter.urls')),
+    path('', include('comment.urls')),
+
     path('admin/', admin.site.urls),
 ]
 

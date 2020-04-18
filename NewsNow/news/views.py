@@ -29,6 +29,7 @@ def news_detail(request,word):
     popnews2 = News.objects.all().order_by('-show')[:3]#show only latest 3 items
     tagname=News.objects.get(name=word).tag
     tag=tagname.split(',')
+    code = News.objects.get(name=word).pk
     try:
         mynews=News.objects.get(name=word)
         mynews.show=mynews.show + 1
@@ -37,7 +38,7 @@ def news_detail(request,word):
         print("Can't add Show")
 
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
-                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending})
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending,'code':code})
 
 def news_detail_short(request,pk):
 
