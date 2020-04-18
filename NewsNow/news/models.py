@@ -26,5 +26,5 @@ class News(models.Model):
 
 
      def __str__(self):
-         return self.set_name
+         return self.name
 

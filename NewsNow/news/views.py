@@ -39,6 +39,33 @@ def news_detail(request,word):
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
                     'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending})
 
+def news_detail_short(request,pk):
+
+    site=Main.objects.get(pk=3)
+
+
+    shownews=News.objects.filter(rand=pk)
+    site = Main.objects.get(pk=2)
+    news = News.objects.all().order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.all().order_by('-pk')[:3]
+    trending = Trending.objects.all().order_by('-pk')
+    #popular news based on shows
+    popnews = News.objects.all().order_by('-show')
+    popnews2 = News.objects.all().order_by('-show')[:3]#show only latest 3 items
+    tagname=News.objects.get(rand = pk).tag
+    tag=tagname.split(',')
+    try:
+        mynews=News.objects.get(rand=pk)
+        mynews.show=mynews.show + 1
+        mynews.save()
+    except:
+        print("Can't add Show")
+
+    return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending})
+
 def news_list(request):
 
     # login check start

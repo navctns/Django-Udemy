@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load extera_auth %}
 {% if user.is_authenticated %}
+{% load humanize %}
 
 <!DOCTYPE html>
 
@@ -420,8 +421,23 @@
                         {% block mainblock %}
                         {% endblock %}
                         <!-- END Dashboard Header -->
-
+                        {{rand}}
+                        <br/>
+                        strong pass - {{randpass}}
+                        <br/>
+                        {{randnews}}
+                        <br/>
+                        humanized - {{humnum|intword}}
+                        <br/>
+                         date - {{today}}
+                        <br/>
+                         date - {{today|naturalday}}
                         <!-- Mini Top Stats Row -->
+                        <br/>
+                        time - {{time}}
+                        <br/>
+                        time - {{time|naturaltime}}
+
 
 
 

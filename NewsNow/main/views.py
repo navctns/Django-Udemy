@@ -6,6 +6,8 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Group,Permission
 import random
 from random import randint
+import datetime
+
 
 
 
@@ -15,6 +17,7 @@ from news.models import News
 from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
+import string
 
 # Create your views here.
 
@@ -103,7 +106,50 @@ def panel(request):
         error = "Access Denied"
         return render(request, 'back/error.html', {'error': error})
 
-    return render(request,'back/home.html')
+    rand = ""
+    for i in range(100):
+        rand = rand + random.choice(string.ascii_letters)
+
+    #strong password generation
+
+    spec = ['!','@', '$', '%', '^', '&', '*']
+    randpass = ""
+    i=0
+    for i in range(4):
+    #while len(randpass)<12:
+        #i = i + 1
+        r = random.randint(0,3)
+        if i == 0 :
+            randpass = randpass + random.choice(string.ascii_lowercase)
+            randpass += random.choice(string.ascii_lowercase)
+            randpass += random.choice(string.ascii_uppercase)
+        elif i == 1 :
+            randpass += random.choice(string.ascii_lowercase)
+            randpass += random.choice(spec)
+            randpass += str(random.randint(0,9))
+        elif i == 2 :
+            randpass += random.choice(string.ascii_uppercase)
+            randpass += random.choice(string.ascii_uppercase)
+            randpass += str(random.randint(0,9))
+        elif i == 3 :
+              randpass += random.choice(string.ascii_uppercase)
+              randpass += random.choice(spec)
+              randpass += random.choice(string.ascii_lowercase)
+        #password algorithm end
+
+    count = News.objects.count()#number of newses
+    randnews = News.objects.all()[random.randint(0,count-1)]
+    humnum = 5300000
+    today = datetime.date.today()
+    time = datetime.datetime(2020, 4, 18, 12, 42, 0, 665105)
+    #time = datetime.time.now()
+    now = datetime.datetime.now()
+
+    #time = now.strftime("%H:%M:%S")
+
+
+    return render(request,'back/home.html', {'rand':rand,'randpass':randpass,'randnews':randnews,'humnum':humnum,
+                                             'today':today, 'time':time})
 
 def my_login(request):
 
