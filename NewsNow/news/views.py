@@ -10,6 +10,7 @@ from convertdate import french_republican
 from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
+from comment.models import Comment
 import random
 
 def news_detail(request,word):
@@ -30,6 +31,8 @@ def news_detail(request,word):
     tagname=News.objects.get(name=word).tag
     tag=tagname.split(',')
     code = News.objects.get(name=word).pk
+    comment = Comment.objects.filter(news_id = code, status = 1).order_by('-pk')[:3]
+    cmcount = len(comment)
     try:
         mynews=News.objects.get(name=word)
         mynews.show=mynews.show + 1
@@ -38,7 +41,9 @@ def news_detail(request,word):
         print("Can't add Show")
 
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
-                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending,'code':code})
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,
+                    'popnews2':popnews2,'tag':tag,'trending':trending,'code':code, 'comment':comment,
+                    'cmcount':cmcount})
 
 def news_detail_short(request,pk):
 
