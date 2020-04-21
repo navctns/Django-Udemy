@@ -66,6 +66,17 @@
                                     {% endfor %}
                                     </tbody>
                                 </table>
+                                Page{{news.number}}from {{news.paginator.num_pages}}
+                                {% if news.has_previous %}
+                                <a href="?page={{news.previous_page_number}}" data-toggle="tooltip" title="Prev" class="btn btn-xs btn-default"><i class="fa fa-pencil">Prev</i></a>
+                                {% endif %}
+                                {% if news.has_next %}
+                                <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"><i class="fa fa-pencil">Next</i></a>
+                                {% endif %}
+
+
+
+
                             </div>
                         </div>
                         <!-- END Datatables Content -->

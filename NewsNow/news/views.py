@@ -12,7 +12,7 @@ from subcat.models import SubCat
 from trending.models import Trending
 from comment.models import Comment
 import random
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def news_detail(request,word):
 
     site=Main.objects.get(pk=3)
@@ -88,7 +88,16 @@ def news_list(request):
     if perm == 0:
         news = News.objects.filter(writer=request.user)
     elif perm == 1:
-        news = News.objects.all()
+        newss = News.objects.all()
+        paginator = Paginator(newss,2)#means a paginator model only two records on a page
+        page = request.GET.get('page')
+        try :
+            news = paginator.page('page')
+        except EmptyPage :
+            news = paginator.page(paginator.num_page)
+        except PageNotAnInteger :
+            news = paginator.page(1)
+
     # end set access to news
 
     return render(request,'back/news_list.html',{'news':news})
