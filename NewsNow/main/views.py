@@ -18,7 +18,8 @@ from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
 import string
-
+from ipware import get_client_ip
+from ip2geotools.databases.noncommercial import DbIpCity
 # Create your views here.
 
 def home(request):
@@ -146,6 +147,19 @@ def panel(request):
     now = datetime.datetime.now()
 
     #time = now.strftime("%H:%M:%S")
+
+    ip, is_routable = get_client_ip(request)#second part is whether it is public(True) or private
+    if ip is None:
+        ip = "0.0.0.0"
+    else:
+        if is_routable:
+            ipv = "Public"
+        else:
+            ipv = 'Private'
+
+    print(ip,ipv)
+
+
 
 
     return render(request,'back/home.html', {'rand':rand,'randpass':randpass,'randnews':randnews,'humnum':humnum,
@@ -350,6 +364,17 @@ def my_register(request):
         password2=request.POST.get('password2')
         print(uname,email,password1,password2)
 
+        ip, is_routable = get_client_ip(request)  # second part is whether it is public(True) or private
+        if ip is None:
+            ip = "0.0.0.0"
+        else:
+            if is_routable:
+                ipv = "Public"
+            else:
+                ipv = 'Private'
+
+
+
         if name=="":
             msg = "Enter your Name"
             return render(request, 'front/contactform/msgbox.html', {'msg': msg})
@@ -390,9 +415,18 @@ def my_register(request):
         #check for the existing users
         if len(User.objects.filter(username=uname))==0 and len(User.objects.filter(email=email))==0:
 
+            ip, is_routable = get_client_ip(request)  # second part is whether it is public(True) or private
+            if ip is None:
+                ip = "0.0.0.0"
+            try:
+                response = DbIpCity.get(ip, api_key='free')
+                country = response.country + " | "+response.city
+            except:
+                counrty = "Unknown"
+
             #create user
             user=User.objects.create_user(username=uname,email=email,password=password1)
-            b=Manager(name=name,utxt=uname,email=email)
+            b=Manager(name=name,utxt=uname,email=email, ip = ip, country = country)
             b.save()
 
         else:

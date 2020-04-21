@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('manager.urls')),
     path('', include('newsletter.urls')),
     path('', include('comment.urls')),
-
+    path('', include('blacklist.urls')),
     path('admin/', admin.site.urls),
 ]
 

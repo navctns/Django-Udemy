@@ -31,7 +31,7 @@ def manager_list(request):
     # end check for permission
 
 
-    manager=Manager.objects.all()
+    manager=Manager.objects.all().exclude(utxt='admin')
 
     return render(request,'back/manager/manager_list.html',{'manager':manager})
 
