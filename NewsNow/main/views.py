@@ -33,13 +33,16 @@ def home(request):
     popnews = News.objects.filter(act=1).order_by('-show')
     popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     trending=Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
     random_object=Trending.objects.all()[randint(0,len(trending)-1)]#to show random trendings
     print(random_object)
     #site=Page.objects.get(pk=1)
     #template=loader.get_template('page/index.html')
     #return HttpResponse("Hello, World You are at news page")
     #return render(request,'page/index.html')
-    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,'lastnews':lastnews,'popnews':popnews,'popnews2':popnews2,'trending':trending})
+    return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,
+                    'lastnews':lastnews,'popnews':popnews,'popnews2':popnews2,'trending':trending,
+                                              'lastnews2':lastnews2})
     #return HttpResponse(template.render(request))
 
 def about(request):
