@@ -39,6 +39,37 @@ def export_cat_csv(request):
     response = HttpResponse(content_type = 'text/csv' )
     response['content-Disposition'] = 'attachment; filename ="cat.csv"'#for creating a download file
     writer = csv.writer(response)
-    writer.writerow(['test1','test2','test3'])#static data to test
+    writer.writerow(['Title','Counter'])
+    for i in Cat.objects.all():
+        writer.writerow([i.name, i.count])#write name and count to csv
 
     return response
+
+def import_cat_csv(request):
+
+    if request.method == 'POST':
+
+        csv_file = request.FILES["csv_file"]
+        file_data = csv_file.read().decode("utf-8")
+        lines = file_data.split("\r")
+        # lines = lines.split('\n')
+        lines_1 = "".join(lines).split('\n')
+        lines_2 = "".join(lines_1).split(',')
+        # lines_3 =
+
+        print(lines_1)
+        print(lines)
+        print("lines2",lines_2)
+        fields = []
+        for line in lines_1:
+            print("lines",line)
+            # fields.append(line.split(","))
+            fields = fields + line.split(',')
+        print("fields,type",fields, type(fields))
+        try:
+            print(fields[0], fields[1])
+        except:
+            print("finish")
+
+    return redirect('cat_list')
+

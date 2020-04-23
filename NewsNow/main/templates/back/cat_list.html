@@ -19,13 +19,24 @@
 
                          <!-- Datatables Content -->
                         <div class="block full">
-                            <div class="block-title">
-                                <h2><strong>Datatables</strong> integration</h2>
-                            </div>
-
                             <div class="table-responsive">
                                 <a href="{%url 'export_cat_csv' %}" data-toggle="tooltip" title="Export CSV file" class="btn btn-xs btn-default">CSV</a>
                             </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                        <!-- Datatables Content -->
+                        <div class="block full">
+
+                               <form action="{%url 'import_cat_csv' %}" method="post" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                    <div class="table-responsive">
+                                   <input type="file" name ="csv_file" id="csv_file" placeholder="import csv file"/>
+                                    <br/>
+<!--                                    <a href="" type="submit" data-toggle="tooltip" title="Import CSV file" class="btn btn-xs btn-default">Submit</a>-->
+                                    <button type="submit" >Submit</button>
+                                    </div>
+                                </form>
+
                         </div>
                         <!-- END Datatables Content -->
 
