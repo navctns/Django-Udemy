@@ -92,7 +92,7 @@ def news_list(request):
         paginator = Paginator(newss,2)#means a paginator model only two records on a page
         page = request.GET.get('page')
         try :
-            news = paginator.page('page')
+            news = paginator.page(page)
         except EmptyPage :
             news = paginator.page(paginator.num_page)
         except PageNotAnInteger :
