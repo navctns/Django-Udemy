@@ -14,6 +14,8 @@ def cat_list(request):
     # login check end
 
     cat=Cat.objects.all()
+    # cat_del = Cat.objects.filter(count = 0)#for deleting categories without news
+    # cat_del.delete()
     return render(request,'back/cat_list.html',{'cat':cat})
 
 def cat_add(request):
@@ -50,6 +52,13 @@ def import_cat_csv(request):
     if request.method == 'POST':
 
         csv_file = request.FILES["csv_file"]
+        #check file
+        if not csv_file.name.endswith('.csv'):
+            error = "Please Input csv file"
+            return render(request, 'back/error.html', {'error': error})
+        if csv_file.multiple_chunks():
+            error = "File too Large"
+            return render(request, 'back/error.html', {'error': error})
         file_data = csv_file.read().decode("utf-8")
         lines = file_data.split("\r")
         # lines = lines.split('\n')
@@ -66,8 +75,15 @@ def import_cat_csv(request):
             # fields.append(line.split(","))
             fields = fields + line.split(',')
         print("fields,type",fields, type(fields))
+        fields1 = []
+        for i in range(0,len(fields)-1,2):
+            fields1.append((fields[i],fields[i+1]))#store name of category and count in tuples(a,b)
         try:
-            print(fields[0], fields[1])
+            # print(fields1[0], fields1[1])
+            for new in fields1:
+                if len(Cat.objects.filter(name = new[0])) == 0 and new[0] != "Title" and new[0] != "":
+                    b = Cat(name = new[0])
+                    b.save()
         except:
             print("finish")
 
