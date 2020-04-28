@@ -1,0 +1,77 @@
+{% extends 'back/master.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<!-- Page content -->
+                    <div id="page-content">
+                        <!-- Datatables Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Pending Comments List<br><small>Lists out the Comments no confirmed</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Pending Comments List</li>
+                            <li><a href="/comments/list/">List</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+                         <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Datatables</strong> integration</h2>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th>Date & time</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Comment</th>
+                                            <th>Status</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cc in pcomment %}
+                                        <tr>
+                                            <td class="text-center">{{cc.pk}}</td>
+                                            <td><a href="javascript:void(0)">{{cc.date}} | {{cc.time}}</a></td>
+                                            <td>{{cc.name}}</td>
+                                            <td>{{cc.email}}</td><!--change to main category-->
+                                            <td>{{cc.cm}}</td>
+                                            {% if cc.status == 0 %}
+                                            <td>Pending</td>
+                                            {% elif cc.status == 1 %}
+                                            <td>Confirmed</td>
+                                            {% endif %}
+
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'comments_confirm' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i>Confirm</i></a>
+                                                    <a href="{%url 'comments_del' pk=cc.pk num=2%}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+ <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
+{% endblock %}

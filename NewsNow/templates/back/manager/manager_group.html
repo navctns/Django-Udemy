@@ -1,0 +1,92 @@
+{% extends 'back/master.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<!-- Page content -->
+                    <div id="page-content">
+
+
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Manager Group<br><small>Lists out the newses with details and status of it</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Manager</li>
+                            <li><a href="">Group</a></li>
+                        </ul>
+
+
+                        <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'manager_group_add' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="text" id="name" name="name" class="form-control" placeholder="group name" required>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                              <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                              </div>
+                                        </div>
+
+
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                        <!-- Datatables Header -->
+                        <!-- END Datatables Header -->
+
+                         <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Datatables</strong> integration</h2>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Name</th>
+
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cc in group %}
+                                        <tr>
+                                            <td>{{cc.name}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'groups_perms' name=cc.name %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Perms</i></a>
+                                                    <a href="{%url 'manager_group_del' name=cc.name %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+ <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
+{% endblock %}
