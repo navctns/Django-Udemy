@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from random import randint
 
 # Create your views here.
 
@@ -13,6 +14,7 @@ from trending.models import Trending
 from comment.models import Comment
 import random
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def news_detail(request,word):
 
     site=Main.objects.get(pk=3)
@@ -40,10 +42,12 @@ def news_detail(request,word):
     except:
         print("Can't add Show")
 
+    link = "/urls/" + str(News.objects.get(name=word).rand)
+
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
                     'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,
                     'popnews2':popnews2,'tag':tag,'trending':trending,'code':code, 'comment':comment,
-                    'cmcount':cmcount})
+                    'cmcount':cmcount, 'link':link})
 
 def news_detail_short(request,pk):
 
@@ -69,8 +73,11 @@ def news_detail_short(request,pk):
     except:
         print("Can't add Show")
 
+    # link =  "/urls/" + str(News.objects.get(rand=pk).rand)
+
     return render(request,'front/news_detail.html',{'news':news,'site':site,'cat':cat,
-                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag,'trending':trending})
+                    'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,
+                    'popnews2':popnews2,'tag':tag,'trending':trending, 'link':link})
 
 def news_list(request):
 
@@ -363,3 +370,24 @@ def news_publish(request,pk):
 
 
     return redirect('news_list')
+
+def news_all_show(request, word):
+
+    catid = Cat.objects.get(name=word).pk
+    allnews = News.objects.filter(ocatid = catid)
+
+    site = Main.objects.get(pk = 2)
+    news = News.objects.filter(act = 1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act = 1).order_by('-pk')[:3]
+    popnews = News.objects.filter(act = 1).order_by('-show')
+    popnews2 = News.objects.filter(act = 1).order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act = 1).order_by('-pk')[:4]
+    random_object = Trending.objects.all()[randint(0, len(trending) - 1)]  # to show random trendings
+
+    return render(request, 'front/all_news.html', {'site': site, 'news': news, "cat": cat, 'subcat': subcat,
+                                               'lastnews': lastnews, 'popnews': popnews, 'popnews2': popnews2,
+                                               'trending': trending,
+                                               'lastnews2': lastnews2, 'allnews':allnews})

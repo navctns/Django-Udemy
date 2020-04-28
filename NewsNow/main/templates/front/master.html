@@ -152,7 +152,7 @@
 												<div class="col-3">
 													<!-- Item post -->
 													<div>
-														<a href="blog-detail-01.html" class="wrap-pic-w hov1 trans-03">
+														<a href="{%url 'news_detail' word=hh.name %}" class="wrap-pic-w hov1 trans-03">
 															<img src="{{hh.picurl}}" alt="IMG">
 														</a>
 
@@ -437,7 +437,7 @@
 							{% for c in cat %}
 							{% if c.count != 0 %}
 							<li class="how-bor1 p-rl-5 p-tb-10">
-								<a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+								<a href="{%url 'news_all_show' word=c.name %}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
 									{{c.name}}({{c.count}})
 								</a>
 							</li>

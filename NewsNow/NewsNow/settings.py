@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     'comment',
     'blacklist',
+    'django_crontab',
+    'qr_code',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,7 @@ STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+CRONJOBS = [
+    ('*/1 * * * *', 'main.cron.my_job') #crontab repeats on every minute if set 5 - 5min
+]
