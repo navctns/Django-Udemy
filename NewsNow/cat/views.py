@@ -29,7 +29,7 @@ def cat_add(request):
         name=request.POST.get('name')
         if name=="":
             error="Empty Field!!!"
-            return render(request,'back/error.html')
+            return render(request,'back/error.html',{'error':error})
         b=Cat(name=name)
         b.save()
         return redirect('cat_list')

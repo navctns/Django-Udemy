@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1%vb2wih1%1ly2)xr1d*(k^qp!d1=ur)@1qe$%ng&0^-@)y@+@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -139,3 +139,9 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 CRONJOBS = [
     ('*/1 * * * *', 'main.cron.my_job') #crontab repeats on every minute if set 5 - 5min
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'navodoo1320@gmail.com'
+EMAIL_HOST_USER = 'navodoo1320@gmail.com'
+EMAIL_HOST_PASSWORD = 'Navodoo13@2020'

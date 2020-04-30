@@ -4,8 +4,8 @@ from django.template import loader
 from django.contrib.auth import authenticate,login,logout
 from django.core.files.storage import FileSystemStorage
 import datetime
-
-
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 
@@ -77,4 +77,23 @@ def contact_del(request,pk):
     b.delete()
 
     return redirect('contact_show')
+
+def answer_cm(request, pk):
+
+#this view is to be transfered to main app
+    if request.method == "POST" :
+        txt = request.POST.get('txt')
+
+        if txt == "":
+            error = "Type your Answer"
+            return render(request, 'back/error.html', {'error': error})
+        to_email = ContactForm.objects.get(pk=pk).email
+        print(to_email)
+        subject = 'answer form'
+        message = txt
+        email_from = settings.EMAIL_HOST_USER
+        emails = [to_email]
+        send_mail(subject, message, email_from, emails)
+
+    return render(request, 'back/contactform/answer_cm.html', {'pk':pk})
 

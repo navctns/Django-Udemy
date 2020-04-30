@@ -11,6 +11,9 @@ from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 def news_letter(request):
 
     if request.method == 'POST':
@@ -71,4 +74,24 @@ def news_txt_del(request, pk, num):
 
     else:
         return redirect('news_emails')
+
+
+def send_email(request):
+
+    txt = request.POST.get('txt')
+    print(txt)
+
+    a = []
+    for i in NewsLetter.objects.all():
+        a.append(NewsLetter.objects.get(pk=i.pk).txt)
+    print(a)
+
+    """
+    subject = 'Message'
+    message = txt
+    email_from = settings.EMAIL_HOST_USER
+    emails = a
+    send_mail(subject, message, email_from, emails)
+    """
+    return redirect('news_emails')
 

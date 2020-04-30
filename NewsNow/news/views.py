@@ -391,3 +391,49 @@ def news_all_show(request, word):
                                                'lastnews': lastnews, 'popnews': popnews, 'popnews2': popnews2,
                                                'trending': trending,
                                                'lastnews2': lastnews2, 'allnews':allnews})
+
+
+def all_news(request):
+
+
+    allnews = News.objects.all()
+    site = Main.objects.get(pk = 2)
+    news = News.objects.filter(act = 1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act = 1).order_by('-pk')[:3]
+    popnews = News.objects.filter(act = 1).order_by('-show')
+    popnews2 = News.objects.filter(act = 1).order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act = 1).order_by('-pk')[:4]
+    random_object = Trending.objects.all()[randint(0, len(trending) - 1)]  # to show random trendings
+
+    return render(request, 'front/all_news_2.html', {'site': site, 'news': news, "cat": cat, 'subcat': subcat,
+                                               'lastnews': lastnews, 'popnews': popnews, 'popnews2': popnews2,
+                                               'trending': trending,
+                                               'lastnews2': lastnews2, 'allnews':allnews})
+
+def all_news_search(request):
+
+    if request.method == 'POST':
+        txt = request.POST.get('txt')
+
+
+    allnews = News.objects.filter(name = txt)
+
+
+    site = Main.objects.get(pk = 2)
+    news = News.objects.filter(act = 1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act = 1).order_by('-pk')[:3]
+    popnews = News.objects.filter(act = 1).order_by('-show')
+    popnews2 = News.objects.filter(act = 1).order_by('-show')[:3]
+    trending = Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act = 1).order_by('-pk')[:4]
+    random_object = Trending.objects.all()[randint(0, len(trending) - 1)]  # to show random trendings
+
+    return render(request, 'front/all_news_2.html', {'site': site, 'news': news, "cat": cat, 'subcat': subcat,
+                                               'lastnews': lastnews, 'popnews': popnews, 'popnews2': popnews2,
+                                               'trending': trending,
+                                               'lastnews2': lastnews2, 'allnews':allnews})
