@@ -14,6 +14,10 @@ from trending.models import Trending
 from comment.models import Comment
 import random
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
+from django.core.cache import cache
+
+
 
 def news_detail(request,word):
 
@@ -413,14 +417,30 @@ def all_news(request):
                                                'trending': trending,
                                                'lastnews2': lastnews2, 'allnews':allnews})
 
+
+
+mysearch = ""
+
 def all_news_search(request):
 
     if request.method == 'POST':
         txt = request.POST.get('txt')
+        mysearch = txt
+        cache.set('mysearch', txt)
+        a = News.objects.filter(name__contains = txt)
+        b = News.objects.filter(short_txt__contains = txt)
+        c = News.objects.filter(body_txt__contains = txt)
+        allnewss = list(chain(a,b,c))
+        allnewss = list(dict.fromkeys(allnewss))#dict converts into a dictionary and fromkeys will eliminate the repeatations
 
-
-    allnews = News.objects.filter(name = txt)
-
+    else:
+        # request.session.get('mysearch', "")
+        cache.get('mysearch')
+        a = News.objects.filter(name__contains=mysearch)
+        b = News.objects.filter(short_txt__contains=mysearch)
+        c = News.objects.filter(body_txt__contains=mysearch)
+        allnewss = list(chain(a, b, c))
+        allnewss = list(dict.fromkeys(allnewss))  # dict converts into a dictionary and fromkeys will eliminate the repeatations
 
     site = Main.objects.get(pk = 2)
     news = News.objects.filter(act = 1).order_by('-pk')
@@ -433,7 +453,18 @@ def all_news_search(request):
     lastnews2 = News.objects.filter(act = 1).order_by('-pk')[:4]
     random_object = Trending.objects.all()[randint(0, len(trending) - 1)]  # to show random trendings
 
+    paginator = Paginator(allnewss, 12)  # means a paginator model only two records on a page
+    page = request.GET.get('page')
+    try:
+        allnews = paginator.page(page)
+    except EmptyPage:
+        allnews = paginator.page(paginator.num_page)
+    except PageNotAnInteger:
+        news = paginator.page(1)
+
+
+
     return render(request, 'front/all_news_2.html', {'site': site, 'news': news, "cat": cat, 'subcat': subcat,
                                                'lastnews': lastnews, 'popnews': popnews, 'popnews2': popnews2,
                                                'trending': trending,
-                                               'lastnews2': lastnews2, 'allnews':allnews})
+                                               'lastnews2': lastnews2, 'allnewss':allnewss})

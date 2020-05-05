@@ -95,3 +95,24 @@ def send_email(request):
     """
     return redirect('news_emails')
 
+def check_mychecklist(request):
+
+    if request.method == 'POST' :
+        # for i in NewsLetter.objects.filter(status=1) :
+        #     # print (i)
+        #     # print(i.pk)
+        #     x = request.POST.get(str(i.pk))
+        #     # print(x)
+        #     if str(x) == 'on' :
+        #         b = NewsLetter.objects.get(pk=i.pk)
+        #         b.delete()
+
+        #List method
+        check = request.POST.getlist('checks[]')
+        print(check)
+        for i in check :
+            b = NewsLetter.objects.get(pk=i)
+            print(b)
+            b.delete()
+
+    return redirect('news_emails')

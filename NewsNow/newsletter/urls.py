@@ -9,6 +9,7 @@ urlpatterns=[
     path('panel/newsletter/phones/', views.news_phones, name='news_phones'),
     path('panel/newsletter/del/<pk>/<num>/', views.news_txt_del, name='news_txt_del'),
     path('panel/send/email/', views.send_email, name='send_email'),
+    path('check/checklist/', views.check_mychecklist, name='check_mychecklist'),
 
 ]
 
