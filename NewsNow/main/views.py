@@ -20,8 +20,14 @@ from trending.models import Trending
 import string
 from ipware import get_client_ip
 from ip2geotools.databases.noncommercial import DbIpCity
+from zeep import Client
+import requests
+import json
+from django.views.decorators.csrf import csrf_exempt# i think:when connecting to other websites(like payment gateway)
+from bs4 import BeautifulSoup
 # Create your views here.
 
+@csrf_exempt
 def home(request):
     sitename="Hello"
     #site=Main.objects.all()
@@ -36,10 +42,58 @@ def home(request):
     lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
     random_object=Trending.objects.all()[randint(0,len(trending)-1)]#to show random trendings
     print(random_object)
+
+    #zeep
+    # client = Client('http://www.webservicex.net/ConvertSpeed.asmx?WSDL')
+    # result = client.service.ConvertSpeed(
+    #     100, 'kilometersPerhour', 'milesPerhour')
+    # print('api speed res:',result)
+    # assert result == 62.137
+
+    #curl - worked fine
+    # b = ''
+    # d = ''
+    # url ='https://api.covid19api.com/country/south-africa/status/confirmed'
+    # payload = {'a':b,'c':d}
+    # result = requests.post(url, params = payload)
+    # print(result.url)
+    # print(result)
+    """
+    
+    PARAMS
+    from    2020-03-01T00:00:00Z
+    
+    to      2020-04-01T00:00:00Z
+    
+    
+    GET By Country All Status
+    https://api.covid19api.com/country/south-africa?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
+
+    """
+    # with json
+    url = 'https://api.covid19api.com/country/south-africa/status/confirmed'
+    data = {'a':'b','c':'d'}
+    headers = {'Content-Type':'application/json'}
+    result = requests.post(url, data=json.dumps(data), headers=headers)
+    print('result json:',result)
+
+    #beautiful soup test
+    my_html = """
+    <title>This is a Test</title>
+    """
+    soup = BeautifulSoup(my_html, 'html.parser')
+    print(soup.title)
+    print(soup.title.string)
+
+
+
     #site=Page.objects.get(pk=1)
     #template=loader.get_template('page/index.html')
     #return HttpResponse("Hello, World You are at news page")
     #return render(request,'page/index.html')
+    #redirect to a different website, (like a bank gateway)
+    # return redirect('https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#b07f97ba-24f4-4ebe-ad71-97fa35f3b683')
+
     return render(request, 'front/home.html',{'site':site,'news':news,"cat":cat,'subcat':subcat,
                     'lastnews':lastnews,'popnews':popnews,'popnews2':popnews2,'trending':trending,
                                               'lastnews2':lastnews2})
