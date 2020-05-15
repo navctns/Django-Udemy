@@ -13,5 +13,6 @@ urlpatterns=[
     path('contact/',views.contact,name='contact'),
     path('panel/change/pass/', views.change_pass, name='change_pass'),
     path('register/', views.my_register, name='my_register'),
+    path('show/data/', views.show_jsondata, name='show_jsondata'),
 
 ]

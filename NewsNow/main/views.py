@@ -9,6 +9,7 @@ from random import randint
 import datetime
 from rest_framework import viewsets
 from .serializer import NewsSerializer
+from django.http import JsonResponse
 
 
 
@@ -18,6 +19,7 @@ from news.models import News
 from cat.models import Cat
 from subcat.models import SubCat
 from trending.models import Trending
+from newsletter.models import NewsLetter
 import string
 from ipware import get_client_ip
 from ip2geotools.databases.noncommercial import DbIpCity
@@ -97,7 +99,8 @@ def home(request):
     # print(soup.find_all('a'))
     # print(soup.find(id='abc'))
 
-    url = 'https://www.udemy.com/'
+    # url = 'https://www.udemy.com/'
+    url = 'http://127.0.0.1:8000/show/data/'
     # result = requests.post(url)
     # print(result.content) #some contents are forbidden(403 Forbidden)
     # soup = BeautifulSoup(result.content,'html.parser')
@@ -105,8 +108,13 @@ def home(request):
     opener = urllib2.build_opener()
     content = opener.open(url).read()
     print(content)
-    soup = soup = BeautifulSoup(content,'html.parser')
-    print(soup.title.string)#here we can get the title
+    # soup = soup = BeautifulSoup(content,'html.parser')
+    # print(soup.title.string)#here we can get the title
+
+    #SESSIONS
+
+    request.session['test'] = 'hello'
+    print(request.session['test'])
 
 
 
@@ -528,6 +536,14 @@ class NewsViewSet(viewsets.ModelViewSet):
 
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+
+def show_jsondata(request):
+
+    count = NewsLetter.objects.filter(status = 1).count()
+
+    data = {'status':count}
+
+    return JsonResponse(data)
 
 
 
