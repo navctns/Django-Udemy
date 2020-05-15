@@ -18,6 +18,9 @@ class Main(models.Model):
 
      picurl2=models.TextField(default="")
      picname2=models.TextField(default="")
+     seo_txt = models.CharField(default='-',max_length=200)
+     seo_keywords = models.TextField(default='-')
+
 
      set_name=models.TextField(default='-')
 

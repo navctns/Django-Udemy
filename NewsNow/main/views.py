@@ -7,7 +7,8 @@ from django.contrib.auth.models import User,Group,Permission
 import random
 from random import randint
 import datetime
-
+from rest_framework import viewsets
+from .serializer import NewsSerializer
 
 
 
@@ -25,6 +26,7 @@ import requests
 import json
 from django.views.decorators.csrf import csrf_exempt# i think:when connecting to other websites(like payment gateway)
 from bs4 import BeautifulSoup
+import urllib.request as urllib2
 # Create your views here.
 
 @csrf_exempt
@@ -79,11 +81,37 @@ def home(request):
 
     #beautiful soup test
     my_html = """
+    <header>
     <title>This is a Test</title>
+    </header>
+    <p class="para">sample paragraph</p>
+    <a href="" name='name' id="name" >abc</a>
+    <a href="" name = 'abc' id='abc'>name</a>
     """
     soup = BeautifulSoup(my_html, 'html.parser')
-    print(soup.title)
-    print(soup.title.string)
+    # print(soup.title)
+    # print(soup.title.string)
+    # print(soup.title.parent.name)
+    # print(soup.p)
+    # print(soup.p['class'])#get the class of the tag
+    # print(soup.find_all('a'))
+    # print(soup.find(id='abc'))
+
+    url = 'https://www.udemy.com/'
+    # result = requests.post(url)
+    # print(result.content) #some contents are forbidden(403 Forbidden)
+    # soup = BeautifulSoup(result.content,'html.parser')
+    # print(soup.title.string)
+    opener = urllib2.build_opener()
+    content = opener.open(url).read()
+    print(content)
+    soup = soup = BeautifulSoup(content,'html.parser')
+    print(soup.title.string)#here we can get the title
+
+
+
+
+
 
 
 
@@ -260,7 +288,8 @@ def site_setting(request):
         yt=request.POST.get('yt')
         link=request.POST.get('link')
         txt=request.POST.get('txt')
-
+        seo_txt = request.POST.get('seotxt')
+        seo_keywords = request.POST.get('seokeywords')
         if fb == "" : fb="#"
         if tw == "": tw = "#"
         if yt == "": yt = "#"
@@ -342,6 +371,8 @@ def site_setting(request):
         b.yt=yt
         b.link=link
         b.about=txt
+        b.seo_txt = seo_txt
+        b.seo_keywords = seo_keywords
         if picurl != "-":b.picurl=picurl
         if picname !="-":b.picname=picname
         if picurl2 != "-": b.picurl2 = picurl2
@@ -493,7 +524,10 @@ def my_register(request):
 
     return render(request,'front/login.html')
 
+class NewsViewSet(viewsets.ModelViewSet):
 
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
 
 

@@ -19,10 +19,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 from django.conf import settings
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.contrib.sitemaps.views import sitemap
+from main.sitemap import MyNewsSiteMap
+from rest_framework import routers
+from main import views
 
+router =  routers.DefaultRouter()
+router.register(r'mynews', views.NewsViewSet)
+
+sitemaps = {
+    'news': MyNewsSiteMap(),
+}
 urlpatterns = [
 
+    url(r'rest/', include(router.urls)),
+    url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^sitemap\.xml$', sitemap,{'sitemaps':sitemaps}, name = 'django.contrib.sitemaps.views.sitemap'),
     # path('media/<path>/', serve, {'document_root': settings.MEDIA_ROOT}),
     # path('static/<path>/', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
