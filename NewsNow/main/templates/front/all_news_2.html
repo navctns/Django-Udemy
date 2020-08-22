@@ -32,7 +32,40 @@
                 <!-- Item Search Word -->
                 <form action="{%url 'all_news_search' %}" method="POST">
 								{% csrf_token %}
-								<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" onkeypress="return Num(event);" type="text" id="txt" name="txt" placeholder="input your word">
+<!--								<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" onkeypress="return Num(event);" type="text" id="txt" name="txt" placeholder="input your word">-->
+								<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" id="txt" name="txt" placeholder="input your word">
+
+
+								<div class="col-md-6">
+                                                    <select id="cat" name="cat" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
+														<option value="0">All News</option>
+
+<!--                                                        <option></option>&lt;!&ndash; Required for data-placeholder attribute to work with Chosen plugin &ndash;&gt;-->
+                                                        {% for i in cat %}
+                                                       <option value="{{i.pk}}">{{i.name}}</option>
+                                                        {% endfor %}
+													</select>
+								</div>
+                                <div class="col-md-6">
+                                                    <select id="from" name="from" class="select-chosen" data-placeholder="From" style="width: 250px;">
+														<option value="0">From</option>
+
+<!--                                                        <option></option>&lt;!&ndash; Required for data-placeholder attribute to work with Chosen plugin &ndash;&gt;-->
+                                                        {% for i in f_rom %}
+                                                       <option value="{{i}}">{{i}}</option>
+                                                        {% endfor %}
+													</select>
+								</div>
+                                <div class="col-md-6">
+                                                    <select id="to" name="to" class="select-chosen" data-placeholder="To" style="width: 250px;">
+														<option value="0">To</option>
+
+<!--                                                        <option></option>&lt;!&ndash; Required for data-placeholder attribute to work with Chosen plugin &ndash;&gt;-->
+                                                        {% for i in t_o %}
+                                                       <option value="{{i}}">{{i}}</option>
+                                                        {% endfor %}
+													</select>
+								</div>
 								<button type="submit" class="size-a-20 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">
 										Search
 								</button>
