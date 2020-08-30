@@ -1,0 +1,3 @@
+<a href="{%url 'news_detail' word=pop.name %}" class="size-w-10 wrap-pic-w hov1 trans-03">
+										<img src="{{pop.picurl}}" alt="IMG">
+									</a>

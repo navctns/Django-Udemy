@@ -196,8 +196,8 @@
 
 <!--        &lt;!&ndash;Grid row&ndash;&gt;-->
 <!--        <div class="row wow fadeIn">-->
+        <div class="row wow fadeIn">
           {% for product in products %}
-<!--        <div class="row wow fadeIn">-->
 
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4">
@@ -209,8 +209,11 @@
               <div class="view overlay">
 <!--                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"-->
 <!--                  alt="">-->
-                <img src="{{product.picurl}}" class="card-img-top"
-                  alt=""/>
+                <a href="{%url 'product_page' pk=product.pk %}">
+                  <img src="{{product.picurl}}" class="card-img-top"
+                    alt=""/>
+                </a>
+
 <!--                <img src="{{product.picurl}}"/>-->
                 <a>
                   <div class="mask rgba-white-slight"></div>
@@ -226,7 +229,7 @@
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text">{{product.name}}
+                    <a href="{%url 'product_page' pk=product.pk %}" class="dark-grey-text">{{product.name}}
                       <span class="badge badge-pill danger-color">NEW</span>
                     </a>
                   </strong>

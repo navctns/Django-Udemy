@@ -67,3 +67,15 @@ def create_product(request):
 
 
     return render(request, 'back/create_product.html', {'category': category})
+
+def product_page(request, pk):
+
+    # shownews=News.objects.filter(name=word)
+    # thisproduct = Product.objects.get(pk=pk)
+    thisproduct = Product.objects.filter(pk=pk)
+    product = Product.objects.get(pk=pk)
+    print('this product',thisproduct)
+    category = Category.objects.filter(pk=product.categ_id)
+    return render(request, 'front/product_page.html',
+                  {'thisproduct':thisproduct,'categ':category})
+
