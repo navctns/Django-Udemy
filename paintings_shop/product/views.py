@@ -15,7 +15,10 @@ def create_product(request):
         product_name =request.POST.get('productname')
         price =request.POST.get('productprice')
         product_cat=request.POST.get('productcat')
+        artist_name = request.POST.get('artist_name')
+        description_inp = request.POST.get('description')
 
+        categ_name = Category.objects.get(pk=product_cat).name
         # newstxtshort=request.POST.get('newstxtshort')
         # newstxt=request.POST.get('newstxt')
         # newsid=request.POST.get('newscat')
@@ -41,7 +44,8 @@ def create_product(request):
                     #      picurl=url, writer=request.user, catname=newsname,
                     #      catid=newsid, show=0,ocatid=ocatid,tag=tag, rand = rand)
                     # b.save()
-                    b = Product(name=product_name, price=price, categ_id=product_cat,picname=filename,picurl=url)
+                    b = Product(name=product_name, price=price, categ_id=product_cat,picname=filename,picurl=url,
+                                artist=artist_name,description=description_inp,categ_name=categ_name)
                     b.save()
 
                     #count of the newses with the ocatid(extracted from subcategory-previous)

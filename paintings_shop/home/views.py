@@ -9,5 +9,4 @@ def home(request):
 
     products = Product.objects.all()
     # categories = {}
-
     return render(request, 'front/home-page.html',{'products':products})
