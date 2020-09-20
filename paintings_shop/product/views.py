@@ -83,3 +83,7 @@ def product_page(request, pk):
     return render(request, 'front/product_page.html',
                   {'thisproduct':thisproduct,'categ':category})
 
+
+
+
+
