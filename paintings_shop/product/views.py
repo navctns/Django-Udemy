@@ -23,7 +23,7 @@ def create_product(request):
         # newstxt=request.POST.get('newstxt')
         # newsid=request.POST.get('newscat')
         # tag=request.POST.get("tag")
-
+        print('product datas',product_name,price,product_cat,artist_name)
         # b = Product(name=product_name, price=price, categ_id=product_cat)
         # b.save()
 
@@ -53,7 +53,7 @@ def create_product(request):
                     # b=Cat.objects.get(pk=ocatid)#to update count in cat model
                     # b.count=count
                     # b.save()
-                    # return redirect('news_list')
+                    return redirect('news_list')
                 else:
                     error="File is Bigger than 1 MB"
                     return render(request,'back/error.html',{'error':error})
@@ -71,6 +71,8 @@ def create_product(request):
 
 
     return render(request, 'back/create_product.html', {'category': category})
+    # return render(request, 'back/create_product_alter.html', {'category': category})
+
 
 def product_page(request, pk):
 

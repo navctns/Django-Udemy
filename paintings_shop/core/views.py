@@ -30,6 +30,7 @@ def create_new_product(request):
         try:
 
             myfile=request.FILES['myfile']# myfile from the name of the html input
+            print('File inputed', myfile)
             fs=FileSystemStorage()
             filename=fs.save(myfile.name,myfile)
             url=fs.url(filename)
@@ -38,22 +39,26 @@ def create_new_product(request):
 
 
                 if myfile.size<5000000:
+                    print('File Size Ok')
                     # newsname = SubCat.objects.get(pk=newsid).name
                     # ocatid=SubCat.objects.get(pk=newsid).catid#get catid from subcategory of news
                     # b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today,time=time, picname=filename,
                     #      picurl=url, writer=request.user, catname=newsname,
                     #      catid=newsid, show=0,ocatid=ocatid,tag=tag, rand = rand)
                     # b.save()
+                    print('Product datas',product_name,price,product_cat,filename,url,artist_name,description_inp,categ_name)
                     b = Product(name=product_name, price=price, categ_id=product_cat,picname=filename,picurl=url,
-                                artist=artist_name,description=description_inp,categ_name=categ_name)
+                                artist=artist_name,categ_name=categ_name)
                     b.save()
 
+                    all_products = Product.objects.all()
+                    print("ALL Products",all_products)
                     #count of the newses with the ocatid(extracted from subcategory-previous)
                     # count=len(News.objects.filter(ocatid=ocatid))
                     # b=Cat.objects.get(pk=ocatid)#to update count in cat model
                     # b.count=count
                     # b.save()
-                    # return redirect('news_list')
+                    return redirect('get_products_list')
                 else:
                     error="File is Bigger than 1 MB"
                     return render(request,'back/error.html',{'error':error})
@@ -70,7 +75,8 @@ def create_new_product(request):
             return render(request, 'back/error.html', {'error': error})
 
 
-    return render(request, 'back/create_product.html', {'category': category})
+    # return render(request, 'back/create_product.html', {'category': category})
+    return render(request, 'back/create_product_alter.html', {'category': category})
 
 
 def dashboard_main(request):

@@ -24,45 +24,199 @@
                                     <!-- END Form Elements Title -->
 
         <!-- Basic Form Elements Content -->
-        <form action="{%url 'create_product' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
-            {% csrf_token %}
-            <div class="form-group">
-                <div class="col-md-6">
-                    <input type="text" id="productname" name="productname" class="form-control" placeholder="Product Name">
-                    <input type="number" id="productprice" name="productprice" class="form-control" placeholder="Price">
-                    <input type="text" id="artist_name" name="artist_name" class="form-control" placeholder="Name of Artist">
-                    <input type="text" id="description" name="description" class="form-control" placeholder="Description">
+<!--          <div class="container-fluid">-->
+<!--              <div class="card">-->
+
+<!--                <form action="{%url 'create_product' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">-->
+<!--                    {% csrf_token %}-->
+<!--                    <div class="form-group">-->
+<!--                        &lt;!&ndash; Image input &ndash;&gt;-->
+<!--                        <div styles="float:right;">-->
+<!--                            <div class="fileinput-new thumbnail img-raised">-->
+<!--                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow" alt="...">-->
+<!--                                </div>-->
+<!--                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>-->
+<!--                                <div>-->
+<!--                                    <span class="btn btn-raised btn-round btn-default btn-file">-->
+<!--                                        <span class="fileinput-new">Select image</span>-->
+<!--                                        <span class="fileinput-exists">Change</span>-->
+<!--                                        <input type="file" name="..." />-->
+<!--                                    </span>-->
+<!--                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>-->
+<!--                                </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; Image Input &ndash;&gt;-->
+
+
+<!--                        <div class="form-group col-md-6" styles="align:center">-->
+<!--                            <input type="text" id="productname" name="productname" class="form-control" placeholder="Product Name">-->
+<!--                            <input type="number" id="productprice" name="productprice" class="form-control" placeholder="Price">-->
+<!--                            <input type="text" id="artist_name" name="artist_name" class="form-control" placeholder="Name of Artist">-->
+<!--                            <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="upload file "></input>-->
 
 
 
-                </div>
-                <div class="col-md-6">
-                    <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="upload file "></input>
-                </div>
-
-                <div class="col-md-6">
-                    <br/>
-                    <strong>Category </strong>
-                    <select id="productcat" name="productcat" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
-                        {% for c in category %}
-                        <option value="{{c.pk}}">{{c.name}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
+<!--                        </div>-->
 
 
-        </form>
-        <!-- END Basic Form Elements Content -->
-    </div>
-    <!-- END Basic Form Elements Block -->
-</div>
+
+<!--                        <div class="col-md-6">-->
+<!--                            <br/>-->
+
+
+<!--                            <strong>Category </strong>-->
+<!--                            <select id="productcat" name="productcat" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">-->
+<!--                                {% for c in category %}-->
+<!--                                <option value="{{c.pk}}">{{c.name}}</option>-->
+<!--                                {% endfor %}-->
+<!--                            </select>-->
+<!--    &lt;!&ndash;                        <input type="image" id="myfile" name="myfile"/>&ndash;&gt;-->
+<!--    &lt;!&ndash;                        <input type="file" id="myFile" name="filename">&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <input type="file" id="myfile" name="myfile" rows="5" placeholder="upload file ">Product Image:</input>-->
+<!--                                <input type="text" id="description" name="description" class="form-control" placeholder="Description">-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="form-group form-file-upload form-file-simple">-->
+<!--                            <input type="text" class="form-control inputFileVisible" placeholder="Simple chooser...">-->
+<!--                            <input type="file" class="inputFileHidden">-->
+<!--                        </div>-->
+<!--                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">-->
+
+<!--                    </div>-->
+
+
+<!--                    <div class="form-group">-->
+
+<!--                        <div class="col-md-12">-->
+<!--                            <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                </form>-->
+<!--              </div>-->
+
+
+<!--    </div>-->
+<!--        &lt;!&ndash; END Basic Form Elements Content &ndash;&gt;-->
+<!--    &lt;!&ndash; END Basic Form Elements Block &ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+
 
 <!-- END Page Content -->
+<!--Trial-->
+<div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Create Product</h4>
+                  <p class="card-category">New Product creation</p>
+                </div>
+                <div class="card-body">
+                  <form>
+                    <div class="row">
+<!--                      <div class="col-md-3">-->
+                        <div class="col-md-6">
 
+                        <div class="form-group">
+<!--                          <label class="bmd-label-floating">Name</label>-->
+<!--                          <input type="text" class="form-control">-->
+                            <input type="text" id="productname" name="productname" class="form-control" placeholder="Product Name">
+<!--                            <input type="file" id="myfile" name="myfile" rows="5" class="for-->
+                        </div>
+                      </div>
+<!--                      <div class="col-md-4">-->
+                      <div class="col-md-6">
+
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Price</label>
+<!--                          <input type="email" class="form-control">-->
+                            <input type="number" id="productprice" name="productprice" class="form-control" placeholder="Price">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+<!--                          <label class="bmd-label-floating">Artist</label>-->
+<!--                          <input type="text" class="form-control">-->
+                            <input type="text" id="artist_name" name="artist_name" class="form-control" placeholder="Name of Artist">
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Category</label>
+<!--                          <input type="text" class="form-control">-->
+                            <select id="productcat" name="productcat" class="select-chosen" data-placeholder="Choose a Category.." style="width: 250px;">
+                                {% for c in category %}
+                                <option value="{{c.pk}}">{{c.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Description</label>
+                          <div class="form-group">
+                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                            <textarea class="form-control" rows="5"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Create</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-profile">
+<!--                <div class="card-avatar">-->
+<!--                  <a href="javascript:;">-->
+<!--                    <img class="img" src="../assets/img/faces/marc.jpg" />-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                  <h6 class="card-category text-gray">CEO / Co-Founder</h6>-->
+<!--                  <h4 class="card-title">Alec Thompson</h4>-->
+<!--                  <p class="card-description">-->
+<!--                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...-->
+<!--                  </p>-->
+<!--                  <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>-->
+<!--                </div>-->
+                  <div styles="float:right;">
+                            <div class="fileinput-new thumbnail img-raised">
+                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow" alt="...">
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                <div>
+                                    <span class="btn btn-raised btn-round btn-default btn-file">
+                                        <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span>
+                                        <input type="file" name="..." />
+                                    </span>
+                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- trial -->
 {% endblock %}
