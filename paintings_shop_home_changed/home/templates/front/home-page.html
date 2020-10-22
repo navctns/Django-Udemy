@@ -1,0 +1,19 @@
+{% extends 'front/landing_master.html' %}
+{% load staticfiles %}
+{% block paintings %}
+	
+	{% for product in products %}
+		<div class="grid-item">
+		    <figure class="effect-sadie">
+		       <img src="{{product.picurl}}" alt="Image" class="img-fluid tm-img">
+		        <figcaption>
+				<h2 class="tm-figure-title">Image <span><strong>One</strong></span></h2>
+				<p class="tm-figure-description">Set true or false in HTML script tag for this page black and white.</p>
+				 <a href="img/tm-img-01.jpg">View more</a>
+		         </figcaption>           
+		     </figure>
+		</div>
+	{% endfor %}
+
+{% endblock %}
+

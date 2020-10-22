@@ -1,0 +1,60 @@
+{% extends 'back/master.html' %}
+{% load staticfiles %}
+    {% block headblock %}
+<!--    <script src="{%static 'ckeditor/ckeditor.js' %}"></script>-->
+    {% endblock %}
+{% block mainblock %}
+
+<!--<div class="content-header">-->
+<!--                            <div class="header-section">-->
+<!--                                <h1>-->
+<!--                                    <i class="gi gi-notes_2"></i>Add News Contents<br><small>Enter Detailed news Entries</small>-->
+<!--                                </h1>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Create</li>
+                            <li><a href="">Category</a></li>
+                        </ul>
+
+
+<div class="row">
+                            <div class="col-md-12">
+                                <!-- Basic Form Elements Block -->
+                                <div class="block">
+                                    <!-- Basic Form Elements Title -->
+                                    <div class="block-title">
+<!--                                        <div class="block-options pull-right">-->
+<!--                                            <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">No Borders</a>-->
+<!--                                        </div>-->
+                                        <h2><strong>Basic Form</strong> Elements</h2>
+                                    </div>
+                                </div>
+                                    <!-- END Form Elements Title -->
+
+                                    <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'create_category' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                <input type="text" id="categoryname" name="categoryname" class="form-control" placeholder="Category Name">
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                              <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                              </div>
+                                        </div>
+
+
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                                </div>
+                                <!-- END Basic Form Elements Block -->
+                            </div>
+
+                    <!-- END Page Content -->
+
+{% endblock %}
