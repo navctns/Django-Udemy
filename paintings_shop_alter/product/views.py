@@ -8,6 +8,7 @@ from django.core.files.storage import FileSystemStorage
 
 def create_product(request):
 
+    """Refer create_new_product in app core"""
     category=Category.objects.all()
 
     if request.method =='POST':
@@ -84,7 +85,6 @@ def product_page(request, pk):
     category = Category.objects.filter(pk=product.categ_id)
     return render(request, 'front/product_page.html',
                   {'thisproduct':thisproduct,'categ':category})
-
 
 
 

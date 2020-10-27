@@ -1,0 +1,115 @@
+{% extends 'back/dashboard_master.html' %}
+{% load staticfiles %}
+
+{% block mainblock %}
+
+<div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title">Edit Art</h4>
+              <p class="card-category">Edit the Current Item</p>
+            </div>
+            <div class="card-body">
+<!--                <form>-->
+                <form action="{%url 'edit_product' pk=product.pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                    {% csrf_token %}
+
+                    <div class="row">
+<!--                      <div class="col-md-3">-->
+                        <div class="col-md-6">
+
+                        <div class="form-group">
+<!--                          <label class="bmd-label-floating">Name</label>-->
+<!--                          <input type="text" class="form-control">-->
+                            <input type="text" id="productname" name="productname" value="{{product.name}}" class="form-control">
+<!--                            <input type="file" id="myfile" name="myfile" rows="5" class="for-->
+                        </div>
+                      </div>
+<!--                      <div class="col-md-4">-->
+                      <div class="col-md-6">
+
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Price</label>
+<!--                          <input type="email" class="form-control">-->
+                            <input type="number" id="productprice" name="productprice" value="{{product.price}}" class="form-control">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+<!--                          <label class="bmd-label-floating">Artist</label>-->
+<!--                          <input type="text" class="form-control">-->
+                            <input type="text" id="artist_name" name="artist_name"  value="{{product.artist}}" class="form-control">
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Category</label>
+<!--                          <input type="text" class="form-control">-->
+                            <select id="productcat" name="productcat" class="select-chosen"  style="width: 250px;">
+                                <option value="{{product.categ_id}}">{{product.categ_name}}</option>
+
+                                {% for c in category %}
+                                <option value="{{c.pk}}">{{c.name}}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                      </div>
+                    </div>
+<!--                     <div class="col-md-4">-->
+<!--                        <div class="card card-profile">-->
+<!--                        <div class="form-group">-->
+<!--                            <div class="fileinput-new thumbnail img-raised">-->
+<!--                                    <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow" alt="...">-->
+<!--                                </div>-->
+<!--                                <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>-->
+<!--                                <div>-->
+<!--                                    <span class="btn btn-raised btn-round btn-default btn-file">-->
+<!--                                        <span class="fileinput-new">Select image</span>-->
+<!--                                        <span class="fileinput-exists">Change</span>-->
+<!--&lt;!&ndash;                                        <input type="file" id="myfile" name="myfile" />&ndash;&gt;-->
+<!--                                    </span>-->
+<!--                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+<!--                    <div class="row">-->
+<!--                      <div class="col-md-12">-->
+<!--                        <div class="form-group">-->
+<!--                          <label>Description</label>-->
+<!--                          <div class="form-group">-->
+<!--                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>-->
+<!--                            <textarea class="form-control" rows="5"></textarea>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+
+<!--                        <div class="col-md-12">-->
+
+<!--                            <button type="submit" class="btn btn-primary">Create</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="clearfix"></div>-->
+
+                        <span>Choose file</span>
+                        <input type="file" id="myfile" name="myfile" value = "{{product.picurl}}" placeholder="{{product.picurl}}">
+
+                    <button type="submit" class="btn btn-primary">Create</button>
+
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
