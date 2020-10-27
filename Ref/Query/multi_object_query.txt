@@ -1,0 +1,1 @@
+list(Product.objects.filter(categ_name='Paintings'))
