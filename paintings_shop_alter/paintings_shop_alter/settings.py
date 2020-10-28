@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'home',
     'product',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'navodoo1320@gmail.com'
+EMAIL_HOST_PASSWORD = 'Navodoo13@2020'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'navodoo1320@gmail.com'
 
 STATIC_URL = '/static/'
 

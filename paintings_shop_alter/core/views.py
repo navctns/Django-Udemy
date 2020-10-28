@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from category.models import Category
 from product.models import Product
 from django.core.files.storage import FileSystemStorage
+from contact.models import Contact
 
 # Create your views here.
 def backend_dashboard(request):
@@ -164,4 +165,23 @@ def edit_product(request,pk):
             # error = "Please Input Your Image"
             # return render(request, 'back/error.html', {'error': error})
             #
-    return render(request,'back/edit_product.html',{'product':product,'category':category})
+    return render(request,'back/edit_product.html',{'pk':pk,'product':product,'category':category})
+
+
+def delete_product(request,pk):
+
+    """Delete a Product"""
+
+    product = Product.objects.get(pk=pk)
+
+    product.delete()
+
+    return redirect('get_products_list')
+
+
+def show_all_contacts(request):
+
+    contacts = Contact.objects.all()
+
+    return render(request, 'back/all_contacts_list.html',{'contacts':contacts})
+

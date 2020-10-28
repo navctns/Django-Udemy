@@ -9,8 +9,8 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Products</h4>
-                  <p class="card-category"> Lists out the products</p>
+                  <h4 class="card-title ">Contacts</h4>
+                  <p class="card-category"> Lists out the Contacts</p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -20,40 +20,35 @@
                           ID
                         </th>
                         <th>Name</th>
-                        <th>Artist</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                      <th></th>
+                        <th>Email</th>
+                        <th>Message</th>
                       <th></th>
                       </thead>
                       <tbody>
-                      {% for p in products %}
+                      {% for cn in contacts %}
                         <tr>
                           <td>
                             1
                           </td>
                           <td>
-                            {{p.name}}
+                            {{cn.contact_name}}
                           </td>
                           <td>
-                            {{p.artist}}
+                            {{cn.email}}
                           </td>
                           <td>
-                            {{p.categ_name}}
+                            {{cn.message}}
                           </td>
-                          <td class="text-primary">
-                            {{p.price}}
-                          </td>
-                          <td>
-                             <div class="btn-group">
-                               <a href="{%url 'edit_product' pk=p.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Edit</i></a>
-                               <a href="{%url 'delete_product' pk=p.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
-
-<!--                               <a href="{%url 'edit_product' pk=p.pk %}">Edit</a>-->
-                             </div>
-                          </td>
-
-<!--                          <td><button>Delete</button></td>-->
+                            <td>
+                                <a href="{%url 'delete_contact' pk=cn.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                <form action="{%url 'reply_contact' pk=cn.pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                    {% csrf_token %}
+                                    <span>
+                                        <input type="text" name="contact_reply" id="contact_reply" placeholder="reply to message.."/>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </span>
+                                </form>
+                            </td>
                         </tr>
                       {% endfor %}
                       </tbody>

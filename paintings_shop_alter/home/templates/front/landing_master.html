@@ -103,7 +103,7 @@ http://www.templatemo.com/tm-500-fluid-gallery
                 </li>
 
                 <!-- Page 2 Gallery Two -->
-                <li>                    
+                <li>
                     <div class="cd-full-width">
                         <div class="container-fluid js-tm-page-content" data-page-no="2" data-page-type="gallery">
                             <div class="tm-img-gallery-container">
@@ -209,7 +209,8 @@ http://www.templatemo.com/tm-500-fluid-gallery
                                                 <p class="tm-text">Nulla sed urna at ligula maximus blandit. Mauris nisi ligula, ultricies ac diam id, hendrerit tincidunt ipsum. Maecenas non massa justo.</p>                                                
                                                 
                                                 <!-- contact form -->
-                                                <form action="index.html" method="post" class="tm-contact-form">
+                                                <form action="{%url 'get_message' %}" method="post" class="tm-contact-form">
+                                                    {% csrf_token %}
 
                                                     <div class="form-group">
                                                         <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
@@ -333,19 +334,19 @@ http://www.templatemo.com/tm-500-fluid-gallery
 
 				/* Gallery Two pop up
                 -----------------------------------------*/
-				$('.gallery-two').magnificPopup({
-                    delegate: 'a',
-                    type: 'image',
-                    gallery:{enabled:true}
-                });
+<!--				$('.gallery-two').magnificPopup({-->
+<!--                    delegate: 'a',-->
+<!--                    type: 'image',-->
+<!--                    gallery:{enabled:true}-->
+<!--                });-->
 
                 /* Gallery Three pop up
                 -----------------------------------------*/
-                $('.gallery-three').magnificPopup({
-                    delegate: 'a',
-                    type: 'image',
-                    gallery:{enabled:true}
-                });
+<!--                $('.gallery-three').magnificPopup({-->
+<!--                    delegate: 'a',-->
+<!--                    type: 'image',-->
+<!--                    gallery:{enabled:true}-->
+<!--                });-->
 
                 /* Collapse menu after click
                 -----------------------------------------*/
