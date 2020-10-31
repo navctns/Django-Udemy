@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <style>
+    .food1 img {
+    width:320px;
+    height: 240px;
+    float:left;
+    padding-left:75px;
+    padding-top:20px;
+    }
+  </style>
+  <body>
+    <div id='app'class="mx-auto" style="width: 200px;margin-top:20px;">
+      <h3>Vue Js Intro</h3>
+      <div v-on:click="say_hello">[[message]]</div>
+        <button v-on:click="greet">Greet</button>
+
+<!--      <button v-on:click="like">Like</button>-->
+    </div>
+  <div class="span3 food1">
+    <img src="{{post.picurl1}}" alt="Image" styles="width:50%;;height:auto;"/>
+<!--    <button v-on:click="like">Like</button>-->
+    <div>[[likes]]</div>
+  </div>
+    <div class="span3 food1">
+      <img src="{{post.picurl2}}" alt="Image" class="img-fluid tm-img"/>
+<!--      <button v-on:click="like">Like</button>-->
+    </div>
+      <div class="span3 food1">
+        <img src="{{post.picurl3}}" alt="Image" class="img-fluid tm-img"/>
+
+      </div>
+
+  </body>
+  <script>
+    var app = new Vue({
+      delimiters:["[[","]]"],
+      el: '#app',
+      data:{
+        message :"Hello!",
+        likes:0
+      },
+      methods:{
+        say_hello:function(){
+          alert("Vue is saying Hello!");
+        },
+        greet:function(){
+          this.message = this.message + 'Users';
+        },
+        like:function(){
+          this.likes = this.likes +1;
+        },
+      },
+    });
+  </script>
+</html>
