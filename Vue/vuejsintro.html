@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id='app'class="mx-auto" style="width: 200px;margin-top:20px;">
+      <h3>Vue Js Intro</h3>
+      <div v-on:click="say_hello">[[message]]</div>
+      <button v-on:click="greet">Greet</button>
+    </div>
+  </body>
+  <script>
+    var app = new Vue({
+      delimiters:["[[","]]"],
+      el: '#app',
+      data:{
+        message :"Hello!"
+      },
+      methods:{
+        say_hello:function(){
+          alert("Vue is saying Hello!");
+        },
+        greet:function(){
+          this.message = this.message + 'Users';
+        }
+      },
+    });
+  </script>
+  <styles>
+
+  </styles>
+</html>

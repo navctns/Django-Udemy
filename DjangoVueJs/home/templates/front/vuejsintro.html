@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <style>
@@ -13,6 +15,11 @@
     padding-left:75px;
     padding-top:20px;
     }
+    .food1 span {
+    padding-left:75px;
+    padding-top:20px;
+
+    }
   </style>
   <body>
     <div id='app'class="mx-auto" style="width: 200px;margin-top:20px;">
@@ -22,19 +29,25 @@
 
 <!--      <button v-on:click="like">Like</button>-->
     </div>
-  <div id='pic1' class="span3 food1" >
-    <img src="{{post.picurl1}}" alt="Image" styles="width:50%;;height:auto;"/>
-    <button v-on:click="like">Like</button>
-    <div>[[likes]]</div>
-  </div>
-    <div class="span3 food1">
-      <img src="{{post.picurl2}}" alt="Image" class="img-fluid tm-img"/>
-<!--      <button v-on:click="like">Like</button>-->
+    <div class="row">
+    <div id='pic1' class="span3 food1" >
+      <div class="row">
+        <img src="{{post.picurl1}}" alt="Image" styles="width:50%;;height:auto;"/>
+      </div>
+      <span>
+        <i v-on:click="like" class="fa fa-thumbs-up"></i>
+        [[likes]]
+      </span>
     </div>
       <div class="span3 food1">
-        <img src="{{post.picurl3}}" alt="Image" class="img-fluid tm-img"/>
-
+        <img src="{{post.picurl2}}" alt="Image" class="img-fluid tm-img"/>
+  <!--      <button v-on:click="like">Like</button>-->
       </div>
+        <div class="span3 food1">
+          <img src="{{post.picurl3}}" alt="Image" class="img-fluid tm-img"/>
+
+        </div>
+    </div>
 
   </body>
   <script>
@@ -60,10 +73,15 @@
       el: '#pic1',
       data:{
         likes:0,
+        dislikes:0,
       },
       methods:{
         like:function(){
           this.likes=this.likes +1;
+        },
+
+        dislike:function(){
+          this.dislikes=this.dislikes +1;
         },
       },
 
