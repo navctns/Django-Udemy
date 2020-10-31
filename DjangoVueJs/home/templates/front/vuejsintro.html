@@ -22,9 +22,9 @@
 
 <!--      <button v-on:click="like">Like</button>-->
     </div>
-  <div class="span3 food1">
+  <div id='pic1' class="span3 food1" >
     <img src="{{post.picurl1}}" alt="Image" styles="width:50%;;height:auto;"/>
-<!--    <button v-on:click="like">Like</button>-->
+    <button v-on:click="like">Like</button>
     <div>[[likes]]</div>
   </div>
     <div class="span3 food1">
@@ -43,7 +43,6 @@
       el: '#app',
       data:{
         message :"Hello!",
-        likes:0
       },
       methods:{
         say_hello:function(){
@@ -52,10 +51,22 @@
         greet:function(){
           this.message = this.message + 'Users';
         },
+
+      },
+    });
+
+      var pic1 = new Vue({
+      delimiters:["[[","]]"],
+      el: '#pic1',
+      data:{
+        likes:0,
+      },
+      methods:{
         like:function(){
-          this.likes = this.likes +1;
+          this.likes=this.likes +1;
         },
       },
+
     });
   </script>
 </html>
