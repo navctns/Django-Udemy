@@ -3,6 +3,7 @@ from category.models import Category
 from product.models import Product
 from django.core.files.storage import FileSystemStorage
 from contact.models import Contact
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def backend_dashboard(request):
@@ -185,3 +186,22 @@ def show_all_contacts(request):
 
     return render(request, 'back/all_contacts_list.html',{'contacts':contacts})
 
+
+def goto_login(request):
+
+    if request.method == 'POST':
+        utxt = request.POST.get('username')
+        ptxt = request.POST.get('password')
+
+        if utxt != "" and  ptxt != "":
+            user=authenticate(username=utxt,password=ptxt)#authenticate() will return none if it is not
+
+            if user!= None:
+                login(request,user)
+                return redirect('backend_dashboard')
+
+    return render(request,'registration/login.html')
+
+def goto_logout(request) :
+
+    pass

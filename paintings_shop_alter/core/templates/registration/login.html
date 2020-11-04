@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <style>
+    .center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+    }
+  </style>
+  <body>
+
+        <div class="container-fluid login-container d-flex justify-content-center align-items-center vh-100 w-100">
+            <form action="{%url 'login' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="username" class="form-control" name='username' id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name='password' id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label"><input type="checkbox"> Remember me</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign In</button>
+
+            </form>
+
+        </div>
+</body>
+
+
+</html>
