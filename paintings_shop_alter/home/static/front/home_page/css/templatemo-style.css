@@ -384,6 +384,15 @@ border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.
 .grid-item {
 	float: left;
 	width: 100%;
+	margin-top:20px;
+}
+h3{
+    margin-top:5px;
+    text-align:center;
+    font-family:"fantasy";
+}
+.grid-item item_label{
+    text-align:center;
 }
 
 .grid-item:last-child { margin-bottom: 0; }
@@ -698,7 +707,7 @@ figure.effect-sadie:hover p {
 		height: 110px;
 	}
 	.cd-hero-slider .cd-full-width { padding-top: 110px; }
-	.cd-slider-nav a.navbar-brand { font-size: 3.5rem; }
+	.cd-slider-nav a.navbar-brand { font-size: 3.5rem;}
 
 	.cd-full-width .container-fluid {
 		padding-left: 0;

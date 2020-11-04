@@ -1,14 +1,23 @@
 {% extends 'front/landing_master.html' %}
 {% load staticfiles %}
 
+{% block head %}
+
+{% endblock %}
 {% block paintings %}
+<style>
+	.grid-item{
+			"margin-top:10px;"
+	}
+</style>
 	{% for product in paintings %}
 
 		<div class="grid-item">
 <!--		    <figure class="effect-sadie">-->
 				<figcaption>
 					<a href="{%url 'product_page' pk=product.pk %}"><img src="{{product.picurl}}" alt="Image" class="img-fluid tm-img"></a>
-						<h2 styles="align:center;"><span class="text-center;"><strong>{{product.name}}</strong></span></h2>
+<!--						<h4 class="item_label"><span class="text-center;"><strong>{{product.name}}</strong></span></h4>-->
+					<i>{{product.name}}</i>
 <!--					<h2 class="text-center">{{product.name}}</h2>-->
 	<!--				<h2 class="tm-figure-title">Image <span><strong>One</strong></span></h2>-->
 	<!--				<p class="tm-figure-description">Set true or false in HTML script tag for this page black and white.</p>-->
@@ -27,7 +36,7 @@
 <!--		    <figure class="effect-sadie">-->
 				<figcaption>
 					<a href="{%url 'product_page' pk=product.pk %}"><img src="{{product.picurl}}" alt="Image" class="img-fluid tm-img"></a>
-						<h2 styles="align:center;"><span class="text-center;"><strong>{{product.name}}</strong></span></h2>
+						<h2 class="item_label"><span class="text-center;"><strong>{{product.name}}</strong></span></h2>
 <!--					<h2 class="text-center">{{product.name}}</h2>-->
 	<!--				<h2 class="tm-figure-title">Image <span><strong>One</strong></span></h2>-->
 	<!--				<p class="tm-figure-description">Set true or false in HTML script tag for this page black and white.</p>-->

@@ -4,16 +4,15 @@
     <meta charset="utf-8">
   </head>
   <div>
-      <h3>Load Images</h3>
+      <h3>Create Post</h3>
       <form action="{%url 'load_data' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
         {% csrf_token %}
           <div class="form-group">
               <div class="col-md-6">
 
                 <input type="file" id="myfile1" name="myfile1" rows="5" class="form-control" placeholder="upload file "></input>
-                  <input type="file" id="myfile2" name="myfile2" rows="5" class="form-control" placeholder="upload file "></input>
-                <input type="file" id="myfile3" name="myfile3" rows="5" class="form-control" placeholder="upload file "></input>
-                  <input type="date" id="date" name="date">Date</div>
+                  <label>Description</label>
+                  <input type="text" id="descr" name="descr"/>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
           </div>

@@ -9,8 +9,8 @@ urlpatterns=[
     path('dashboard/edit/product/<pk>', views.edit_product, name='edit_product'),
     path('dashboard/delete/product/<pk>', views.delete_product, name='delete_product'),
     path('dashboard/contacts/list/', views.show_all_contacts, name='show_all_contacts'),
-    path('login/', views.goto_login, name='login'),
-    path('logout/', views.goto_logout, name='logout'),
+    path('login/', views.goto_login, name='goto_login'),
+    path('logout/', views.goto_logout, name='goto_logout'),
 
     # path('about/',views.about,name='about'),
 

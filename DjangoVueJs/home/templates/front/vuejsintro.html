@@ -15,9 +15,10 @@
     padding-left:75px;
     padding-top:20px;
     }
-    .food1 span {
+    .food1 span i{
     padding-left:75px;
     padding-top:20px;
+    padding-top:10px;
 
     }
   </style>
@@ -30,23 +31,20 @@
 <!--      <button v-on:click="like">Like</button>-->
     </div>
     <div class="row">
-    <div id='pic1' class="span3 food1" >
-      <div class="row">
-        <img src="{{post.picurl1}}" alt="Image" styles="width:50%;;height:auto;"/>
-      </div>
-      <span>
-        <i v-on:click="like" class="fa fa-thumbs-up"></i>
-        [[likes]]
-      </span>
-    </div>
-      <div class="span3 food1">
-        <img src="{{post.picurl2}}" alt="Image" class="img-fluid tm-img"/>
-  <!--      <button v-on:click="like">Like</button>-->
-      </div>
-        <div class="span3 food1">
-          <img src="{{post.picurl3}}" alt="Image" class="img-fluid tm-img"/>
+      {% for post in posts %}
 
+      <div id='pic1' class="span3 food1" >
+        <span><i>{{post.post_desc}}</i></span>
+        <div class="row">
+          <img src="{{post.picurl}}" alt="Image" styles="width:50%;;height:auto;"/>
         </div>
+        <span>
+          <i v-on:click="like" class="fa fa-thumbs-up"></i>
+          [[likes]]
+        </span>
+      </div>
+      {% endfor %}
+
     </div>
 
   </body>

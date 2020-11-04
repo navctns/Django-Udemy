@@ -35,6 +35,14 @@ The above copyright notice and this permission notice shall be included in all c
 
 </head>
 
+<style>
+  .login {
+    float:right;
+    margin-top:60px;
+    margin-right:250px;
+  }
+</style>
+
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
@@ -88,8 +96,11 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <div class="main-panel">
+      <div class="login"><a href="{%url 'goto_login' %}">Logout</a></div>
+
       <!-- Navbar -->
       <div class="content">
+
         <div class="container-fluid">
           <div class="row" >
                           <div class="card card-stats">

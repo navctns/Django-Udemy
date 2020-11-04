@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <style>
+    .center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+    }
+  </style>
+  <body>
+              <label>PDF Document:</label>
+
+<div class="container-fluid login-container d-flex justify-content-center align-items-center vh-100 w-100">
+    <form action="{%url 'show_home' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+        {% csrf_token %}
+        <div>
+            <input type="file" id="myfile" name="myfile" rows="5"  placeholder="upload PDF "></input>
+            <span class="text-center;">
+
+                <button type="submit" class="btn btn-primary">Encrypt</button>
+            </span>
+    <!--            <input type="file" id="myfile" name="myfile" rows="5"  placeholder="upload PDF "></input>-->
+    <!--            <span class="input-group-btn" styles="align:center;">-->
+
+        </div>
+    </form>
+    {% if file_encript == '1' %}
+    <a href="{%url 'download_encripted_file' %}">Encripted File</a>
+    {% endif %}
+</div>
+<!--        <div>-->
+
+<!--            <input type="file" id="myfile" name="myfile" rows="5"  placeholder="upload PDF "></input>-->
+<!--            <span class="input-group-btn">-->
+<!--                <button class="btn btn-primary">Encrypt</button>-->
+<!--            </span>-->
+<!--        </div>-->
+    </form>
+      </div>
+</body>
+<!--    <div class="container center_div">-->
+
+<!--            <form action="" method="post" enctype="multipart/form-data" class="text-center;">-->
+<!--                {% csrf_token %}-->
+<!--                  <div class="form-group">-->
+<!--                      <div class="col-md-6">-->
+<!--                          <label>PDF Document:</label>-->
+<!--                          <input type="file" id="myfile" name="myfile" rows="5" class="form-control" placeholder="upload file "></input>-->
+<!--                      </div>-->
+<!--                  </div>-->
+<!--            </form>-->
+<!--    </div>-->
+
+
+</html>

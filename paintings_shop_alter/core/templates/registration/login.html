@@ -12,11 +12,14 @@
     margin: 0 auto;
     width:80% /* value of your choice which suits your alignment */
     }
+    body {
+        background-color: #149db2;
+    }
   </style>
-  <body>
+  <body class="login_continer">
 
         <div class="container-fluid login-container d-flex justify-content-center align-items-center vh-100 w-100">
-            <form action="{%url 'login' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+            <form action="{%url 'goto_login' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="inputEmail">Email</label>

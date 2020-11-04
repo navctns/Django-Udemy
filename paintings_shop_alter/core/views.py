@@ -7,10 +7,22 @@ from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def backend_dashboard(request):
+    """Backend Dashbaord Home"""
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
 
     return render(request,'back/dashboard_master.html')
 
 def create_new_product(request):
+
+    """Create New Product"""
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
 
     category=Category.objects.all()
 
@@ -85,9 +97,20 @@ def create_new_product(request):
 
 def dashboard_main(request):
 
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
+
     return render(request, 'back/dashboard_master.html')
 
 def get_products_list(request):
+    """List out the products"""
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
 
     products = Product.objects.all()
 
@@ -96,6 +119,12 @@ def get_products_list(request):
 def edit_product(request,pk):
 
     """Edit Product Credentials"""
+
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
+
     print('Executing edit_product')
     category = Category.objects.all()
     product = Product.objects.get(pk=pk)
@@ -173,6 +202,11 @@ def delete_product(request,pk):
 
     """Delete a Product"""
 
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
+
     product = Product.objects.get(pk=pk)
 
     product.delete()
@@ -181,6 +215,11 @@ def delete_product(request,pk):
 
 
 def show_all_contacts(request):
+    """Show all contact messages"""
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('goto_login')
+    # login check end
 
     contacts = Contact.objects.all()
 
@@ -204,4 +243,6 @@ def goto_login(request):
 
 def goto_logout(request) :
 
-    pass
+    logout(request)
+
+    return redirect('goto_login')
