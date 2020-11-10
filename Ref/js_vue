@@ -1,0 +1,12 @@
+<!--    var pic1 = new Vue({-->
+<!--      el: '#pic1',-->
+<!--      data:{-->
+<!--        likes:'0',-->
+<!--      },-->
+<!--      methods:{-->
+<!--        like:function(){-->
+<!--          this.likes=this.likes +1;-->
+<!--        },-->
+<!--      },-->
+
+    });

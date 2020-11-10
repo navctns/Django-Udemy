@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,11 +20,25 @@
     .food1 span i{
     padding-left:75px;
     padding-top:20px;
-    padding-top:10px;
 
+    }
+    body {
+        background-image:url("{% static 'img/sherlock_crop.png' %}");
     }
   </style>
   <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+          <div class="container">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">Home</li>
+              <li class="nav-item">Blogs</li>
+              <li class="nav-item">Contact</li>
+            </ul>
+          </div>
+    </nav>
+  <div class="container-fluid">
+
+  </div>
     <div id='app'class="mx-auto" style="width: 200px;margin-top:20px;">
       <h3>Vue Js Intro</h3>
       <div v-on:click="say_hello">[[message]]</div>
@@ -46,7 +62,10 @@
       {% endfor %}
 
     </div>
-
+    <!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <li>Footer contents</li>
+  </footer>
   </body>
   <script>
     var app = new Vue({
