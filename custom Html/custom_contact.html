@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <style>
+    .food1 img {
+    width:320px;
+    height: 240px;
+    float:left;
+    padding-left:75px;
+    padding-top:20px;
+    }
+    .food1 span i{
+    padding-left:75px;
+    padding-top:20px;
+
+    }
+    body {
+        background-image:url(img/sherlock_crop.png);
+    }
+   h3{
+	color:white;
+     }
+  .navbar{
+		background-color:black;
+	}
+
+   .page-footer{
+		background-color:black;
+	}
+   .contact_form{
+		float:center;
+	}
+  </style>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+          <div class="container">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item" style="color:orange;margin-left:10px;">Home</li>
+              <li class="nav-item" style="color:orange;margin-left:10px;">Blogs</li>
+              <li class="nav-item" style="color:orange;margin-left:10px;">Contact</li>
+            </ul>
+          </div>
+    </nav>
+  <div class="container-fluid">
+
+  </div>
+
+      <h3 class="text-center" style="color:orange;">Contact</h3>
+
+<!--      <button v-on:click="like">Like</button>-->
+
+      <form class="contact_form text-center" style="align:center;">
+	  <div class="form-group col-sm-10" >
+	    <label for="name">name</label>
+	    <input type="text" class="form-control" id="name" placeholder="name" style="width:400px;">
+	    <label for="exampleFormControlInput1">Email address</label>
+	    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+	  </div>
+	</form>
+    
+  </body>
+	<!--Footer-->
+  <footer class="page-footer font-small mt-4 wow fadeIn mb-0">
+    <li>Footer contents</li>
+	<div class="container-fluid" style="float-left;margin-left:40px;">
+		<ul>
+			<li style="color:orange">Contact</li>
+			<li style="color:orange">About</li>
+		</ul>
+	</div>
+  </footer>
+  <script>
+    var app = new Vue({
+      delimiters:["[[","]]"],
+      el: '#app',
+      data:{
+        message :"Hello!",
+      },
+      methods:{
+        say_hello:function(){
+          alert("Vue is saying Hello!");
+        },
+        greet:function(){
+          this.message = this.message + 'Users';
+        },
+
+      },
+    });
+
+      var pic1 = new Vue({
+      delimiters:["[[","]]"],
+      el: '#pic1',
+      data:{
+        likes:0,
+        dislikes:0,
+      },
+      methods:{
+        like:function(){
+          this.likes=this.likes +1;
+        },
+
+        dislike:function(){
+          this.dislikes=this.dislikes +1;
+        },
+      },
+
+    });
+  </script>
+</html>

@@ -1,0 +1,92 @@
+{% extends 'back/master.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<!-- Page content -->
+                    <div id="page-content">
+
+
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>Add Perms to User<br><small>Add Permissions to user</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>Perms</li>
+                            <li><a href="">Add Perms to User</a></li>
+                        </ul>
+
+
+                        <!-- Basic Form Elements Content -->
+                                    <form action="{%url 'user_perms_add' pk=pk %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+
+                                            <div class="col-md-6">
+                                                    <select id="pname" name="pname" class="select-chosen" data-placeholder="Choose a Permission.." style="width: 250px;">
+                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                                        {% for i in perms %}
+                                                       <option value="{{i.name}}">{{i.name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                              <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                              </div>
+                                        </div>
+
+
+                                    </form>
+                                    <!-- END Basic Form Elements Content -->
+                        <!-- Datatables Header -->
+                        <!-- END Datatables Header -->
+
+                         <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Datatables</strong> integration</h2>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Name</th>
+
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cc in uperms %}
+                                        <tr>
+                                            <td>{{cc}}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+
+                                                    <a href="{%url 'user_perms_del' pk=pk name=cc %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+ <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
+{% endblock %}

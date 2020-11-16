@@ -1,0 +1,104 @@
+{% extends 'back/master.html' %}
+{% load staticfiles %}
+{% block mainblock %}
+<!-- Page content -->
+                    <div id="page-content">
+                        <!-- Datatables Header -->
+                        <div class="content-header">
+                            <div class="header-section">
+                                <h1>
+                                    <i class="fa fa-table"></i>News Lists<br><small>Lists out the newses with details and status of it</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <ul class="breadcrumb breadcrumb-top">
+                            <li>News List</li>
+                            <li><a href="">List</a></li>
+                        </ul>
+                        <!-- END Datatables Header -->
+
+                         <!-- Datatables Content -->
+                        <div class="block full">
+                            <div class="block-title">
+                                <h2><strong>Datatables</strong> integration</h2>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table id="" class="table table-vcenter table-condensed table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Image</th>
+                                            <th>Date</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Writer</th>
+                                            <th>Status</th>
+                                            <th>views</th>
+                                            <th class="text-center"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cc in news %}
+                                        <tr>
+                                            <td class="text-center">{{cc.rand}}</td>
+                                            <td class="text-center"><img style="display:inline-block; width:50px; height:50px" src="{{cc.picurl}}" alt="avatar" class="img-circle"></td>
+                                            <td><a href="javascript:void(0)">{{cc.date}} | {{cc.time}}</a></td>
+                                            <td>{{cc.name}}</td>
+                                            <td>{{cc.catname}}</td><!--change to main category-->
+                                            <td>{{cc.writer}}</td>
+                                            {% if cc.act == 0 %}
+                                            <td>Pending</td>
+                                            {% elif cc.act == 1 %}
+                                            <td>Confirmed</td>
+                                            {% endif %}
+                                            <td><span class="label label-info">{{cc.show}}</span></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{%url 'news_edit' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil">Edit</i></a>
+                                                    {% if perms.main.masteruser %}
+                                                    <a href="{%url 'news_publish' pk=cc.pk %}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i>Confirm</i></a>
+                                                    {% endif %}
+                                                    <a href="{%url 'news_delete' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times">Delete</i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                                Page{{news.number}}from {{news.paginator.num_pages}}
+                                <br/><br/>
+                                {% if news.has_previous %}
+                                <a href= "?page={{news.previous_page_number}}" data-toggle="tooltip" title="Prev" class="btn btn-xs btn-default">Prev</a>
+                                {% endif %}
+                                {% for i in news.paginator.page_range %}
+
+                                    {% if news.number == i %}
+                                        <a href= "#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default">{{i}}</a>
+                                    {% else %}
+                                        <a href= "?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default">{{i}}</a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if news.has_next %}
+                                <a href= "?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default">Next</a>
+                                {% endif %}
+
+
+
+
+                            </div>
+                        </div>
+                        <!-- END Datatables Content -->
+                    </div>
+                    <!-- END Page Content -->
+
+{% endblock %}
+
+{% block footerblock %}
+
+ <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
+{% endblock %}
