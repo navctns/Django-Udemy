@@ -581,13 +581,15 @@ template {
 [hidden] {
   display: none !important; }
 
-h1, h2, h3, h4, h5, h6,
+h1, h2, h4, h5,
 .h1, .h2, .h3, .h4, .h5, .h6 {
+
+
   margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: inherit; }
+  color: black; }
 
 h1, .h1 {
   font-size: 2.5rem; }
@@ -602,7 +604,7 @@ h4, .h4 {
   font-size: 1.5rem; }
 
 h5, .h5 {
-  font-size: 1.25rem; }
+  font-size: 1.0rem; }
 
 h6, .h6 {
   font-size: 1rem; }
@@ -2114,8 +2116,8 @@ fieldset:disabled a.btn {
   pointer-events: none; }
 
 .btn-primary {
-  color: #fff;
-  background-color: #502c6c;
+  color: #3c2151;
+  background-color: #3c2151;
   border-color: #502c6c; }
   .btn-primary:hover {
     color: #fff;
@@ -2137,7 +2139,7 @@ fieldset:disabled a.btn {
       box-shadow: 0 0 0 0.2rem rgba(80, 44, 108, 0.5); }
 
 .btn-secondary {
-  color: #fff;
+  color:  #3c2151;
   background-color: #7832e2;
   border-color: #7832e2; }
   .btn-secondary:hover {
