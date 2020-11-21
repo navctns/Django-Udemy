@@ -1,0 +1,41 @@
+<style>
+    .food1 img {
+    width:320px;
+    height: 240px;
+    float:left;
+    padding-left:75px;
+    padding-top:20px;
+    }
+    .food1 span i{
+    padding-left:75px;
+    padding-top:20px;
+
+    }
+	.food1 span img{
+			width:320px;
+    			height: 240px;
+		}
+    body {
+	background-repeat: no-repeat;
+  	background-size: cover;
+    }
+    .display_pic_large{
+        background-image:url('images/02.png');
+    }
+   h3{
+	color:white;
+     }
+  .navbar{
+		background-color:black;
+	}
+
+   .page-footer{
+		background-color:black;
+	}
+.gallery-img{
+	width:320px;
+    	height: 240px;
+}
+	
+  </style>
+

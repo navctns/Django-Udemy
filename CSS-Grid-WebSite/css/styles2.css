@@ -1,0 +1,33 @@
+
+/* main wrapper */
+.wrapper {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap:1em;
+}
+
+.wrapper > div {
+    background:#eee;
+    padding:1em;
+}
+
+.wrapper > div:nth-child(odd){
+    background:#ddd;
+}
+
+/*nested */
+
+.nested {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+}
+
+.nested > div{
+    border:#333 1px solid;
+    padding:1em;
+}
+
+.box1 {
+    grid-column:1/3;
+    grid-row:1;
+}
