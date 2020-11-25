@@ -1,0 +1,75 @@
+
+
+/* core css */
+
+body {
+  margin:0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,h2,h3,p {
+  margin:0;
+}
+
+.container {
+  width:85%;
+  margin:0 auto;
+  max-width:65em;
+}
+
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:0.5em 1.25em;
+  color:var(--clr-text, #fff);
+  background:var(--clr-accent, blue);
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:1.125em;
+  border-radius:0.25em;
+  transition:transform 250ms ease-in-out,
+    opacity 250ms linear;
+
+}
+
+.btn:hover,
+.btn:focus {
+  transform:scale(1.1);
+  opacity:0.9;
+}
+
+/* Specific areas */
+
+.primary-title {
+  font-size:4rem;
+  font-size:clamp(3rem,(5vw+1rem),4.5rem);
+  line-height:1;
+  text-transform:uppercase;
+}
+
+.hero {
+  text-align:center;
+  padding:15em 0;
+  background:#222;
+  background:url("../img/shoe-hero.jpg"),
+  radial-gradient(#444,#111);
+  background-blend-mode: multiply;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-position:center center;
+  color:#fff;
+  @supports(background-blend-mode: multiply){
+    background-position:center center;
+    background:url("../img/pexels-allan-mas-5368965.jpg"),
+    radial-gradient(#444,#111);
+    background-blend-mode: multiply;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-position:center center;
+  }
+
+}

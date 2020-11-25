@@ -1,0 +1,31 @@
+
+
+/* core css */
+
+body {
+  margin:0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,h2,h3,p {
+  margin:0;
+}
+
+.container {
+  width:85%;
+  margin:0 auto;
+  max-width:65em;
+}
+
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:0.5em 1.25em;
+  background:blue;
+  color:#fff;
+  font-weight:700;
+}
