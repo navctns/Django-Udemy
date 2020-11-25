@@ -1,0 +1,208 @@
+
+
+/* core css */
+
+body {
+  margin:0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,h2,h3,p {
+  margin:0;
+}
+
+.container {
+  width:85%;
+  margin:0 auto;
+  max-width:65em;
+}
+
+.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:0.5em 1.25em;
+  color:var(--clr-text, #fff);
+  background:var(--clr-accent, #3F423C);
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:1.125em;
+  border-radius:0.25em;
+  transition:transform 250ms ease-in-out,
+    opacity 250ms linear;
+
+}
+
+.btn:hover,
+.btn:focus {
+  transform:scale(1.1);
+  opacity:0.9;
+}
+
+/* Specific areas */
+
+.primary-title {
+  font-size:3rem;
+  font-size:clamp(3rem,(5vw+1rem),4.5rem);
+  line-height:1;
+  text-transform:uppercase;
+  padding-bottom: 1em;
+}
+
+.hero {
+  text-align:center;
+  padding:15em 0;
+  background:#222;
+  background:url("../img/shoe-hero.jpg"),
+  radial-gradient(#444,#111);
+  background-blend-mode: multiply;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  background-position:center center;
+  color:#fff;
+  @supports(background-blend-mode: multiply){
+    background-position:center center;
+    background:url("../img/pexels-allan-mas-5368965.jpg"),
+    radial-gradient(#444,#111);
+    background-blend-mode: multiply;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    background-position:center center;
+  }
+
+}
+
+.spacing >*+*{
+  margin-top:var(--spacer, 2rem)
+}
+
+.section-title{
+  text-align:center;
+  font-size:clamp(2.5rem, calc(5vw+1rem),4rem);
+  line-height:1;
+  color:#17353d;
+  margin-bottom:5rem;
+}
+section {
+  padding:7em 0;
+}
+
+.split {
+  display:flex;
+  gap:1em;
+  flex-wrap:wrap;
+
+}
+.split > .featured-item {
+
+  flex-basis:30%;
+  min-width:15em;
+}
+
+.featured {
+  background:#eee;
+}
+
+.split > .featured-item {
+
+    display:block;
+    position:relative;
+    transform:scale(0.5);
+    text-decoration:none;
+    text-align:center;
+    line-height:1.2;
+
+}
+
+.split > .featured-item:hover,
+.split > .featured-item:focus{
+  transform:scale(1);
+  .split .featured-item .featured-details {
+    opacity:1;
+  }
+}
+.split > .featured-item:hover .featured-details,
+.split > .featured-item:focus .featured-details{
+  opacity:1;
+  text-shadow:0 0 2em rgba(#fff, 1);
+}
+
+
+
+
+.split > .featured-item:after{
+  content:'';
+  position:absolute;
+  padding:75% 75% 0 0;
+  top:10%;
+  left:10%;
+  border-radius:50%;
+  background:#2193b0;
+  z-index:-1;
+}
+
+.split > .featured-item > .featured-details > .price {
+  display:block;
+  font-weight:700;
+  font-size:2.5em;
+}
+
+.split > .featured-item > .featured-details {
+  opacity:0;
+  transition: 250ms ease-in-out, opacity 250ms linear;
+}
+
+.product {
+  background:#2B8F63;
+  padding:3em;
+  border-radius:3em;
+  margin-bottom:3em;
+  text-align:center;
+}
+.product-title {
+  font-size:3em;
+  color:#fff;
+  text-transform:uppercase;
+  text-shadow:0 0 0.2em rgba(#000, 0.2);
+  line-height: 1;
+  font-size:clamp(3rem,calc(5vw+1rem),5.5rem);
+  padding-bottom: 2rem;
+}
+.product-image {
+  margin:-5em 0 0 0;
+}
+.product-description {
+  padding-bottom: 2rem;
+}
+
+.product-btn {
+  background:#60D75A;
+  align-self: center;
+}
+.main-footer {
+  background:#181A17;
+  color:#fff;
+}
+ul li {
+  list-style: none;
+}
+@media(min-width:45em){
+  .product-image {
+    float:right;
+    width:50%;
+    shape-outside:url('../img/shoe-1.png');
+    shape-margin:1em;
+    text-align: left;
+  }
+
+  .left-image {
+    float:left;
+  }
+  .product-title{
+    margin:0;
+  }
+
+}
