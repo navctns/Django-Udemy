@@ -4,12 +4,17 @@
 
 body {
   margin:0;
+  font-family: sans-serif,Arial;
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+a{
+  text-decoration: none;
 }
 
 h1,h2,h3,p {
