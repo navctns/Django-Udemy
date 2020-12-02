@@ -4,9 +4,7 @@
 
 body {
   margin:0;
-  /*font-family: sans-serif,Arial;*/
-  font-family: 'Source Sans Pro';font-size: 18px;
-  line-height: 1.5em;
+  font-family: sans-serif,Arial;
 }
 
 img {
@@ -281,7 +279,7 @@ section {
    bottom: 0;
 }
 .main-footer .footer-item{
-  display:block;
+  display:inline-block;
   position:relative;
   flex-basis:30%;
   min-width:15em;
