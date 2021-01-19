@@ -1,0 +1,3 @@
+/home/naveen/PycharmProject/Django-Udemy-Git/Django-Udemy/paintings_shop_alter/core/templates/registration/login.html
+
+4d5bab59b5msh8623aabf249873cp1f7609jsnc4fa275c92de

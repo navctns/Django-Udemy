@@ -1,0 +1,129 @@
+{% extends 'backend_master.html' %}
+{% load staticfiles %}
+
+{% block main_content %}
+<!-- HEADER -->
+  <header id="main-header" class="py-2 bg-success text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2><i class="fas fa-folder px-3"></i>Categories</h2>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- ACTION -->
+  <section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Posts">
+          </div>
+
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="input-group-append">
+            <button class="btn btn-success">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="posts">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-dark text-white">
+              <h4 class="text-center">Latest Posts</h4>
+            </div>
+            <table class="table table-striped">
+              <thead class="thead bg-dark text-white p-3">
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Category One</td>
+                  <td>May 10 2018</td>
+                  <td>
+                    <a href="details.html" class="btn btn-secondary">
+                      <i class="fas fa-angle-double-right"></i>Details
+                    </a>
+                  </td>
+                </tr>
+
+                  <tr>
+                    <td>2</td>
+                    <td>Category Two</td>
+                    <td>June 10 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>Details
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>3</td>
+                    <td>Category Three</td>
+                    <td>August 10 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>Details
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>4</td>
+                    <td>Category Four</td>
+                    <td>January 10 2018</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>Details
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>5</td>
+                    <td>Category Five</td>
+                    <td>July 10 2019</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>Details
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>6</td>
+                    <td>Category Six</td>
+                    <td>September 02 2019</td>
+                    <td>
+                      <a href="details.html" class="btn btn-secondary">
+                        <i class="fas fa-angle-double-right"></i>Details
+                      </a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+
