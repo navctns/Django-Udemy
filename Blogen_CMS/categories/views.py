@@ -2,12 +2,19 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .forms import AddCategoryForm
 from django.views.generic.edit import FormView
-
+from .models import Category
 class CategoriesView(TemplateView):
     """Main Dashboard view"""
 
     template_name = "categories1.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(CategoriesView, self).get_context_data(*args, **kwargs)
+
+        cat_objs = Category.objects.all()
+        cats = cat_objs
+        context["cats"] = cats
+        return context
 
 # class AddCategoryFormView(FormView):
 #
@@ -26,6 +33,10 @@ class CategoriesView(TemplateView):
 
 def add_category(request):
     """Function based view for model based form"""
+    form = AddCategoryForm(request.POST)
+    if form.is_valid():
+        print("VALID")
+        form.save()
     form = AddCategoryForm()
 
     return render(request, 'dashboard_1.html',{'form':form})

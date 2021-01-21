@@ -49,9 +49,11 @@
                 </tr>
               </thead>
               <tbody>
+              {% for cc in cats %}
+
                 <tr>
                   <td>1</td>
-                  <td>Category One</td>
+                  <td>{{cc.title}}</td>
                   <td>May 10 2018</td>
                   <td>
                     <a href="details.html" class="btn btn-secondary">
@@ -59,61 +61,7 @@
                     </a>
                   </td>
                 </tr>
-
-                  <tr>
-                    <td>2</td>
-                    <td>Category Two</td>
-                    <td>June 10 2018</td>
-                    <td>
-                      <a href="details.html" class="btn btn-secondary">
-                        <i class="fas fa-angle-double-right"></i>Details
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>3</td>
-                    <td>Category Three</td>
-                    <td>August 10 2018</td>
-                    <td>
-                      <a href="details.html" class="btn btn-secondary">
-                        <i class="fas fa-angle-double-right"></i>Details
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>4</td>
-                    <td>Category Four</td>
-                    <td>January 10 2018</td>
-                    <td>
-                      <a href="details.html" class="btn btn-secondary">
-                        <i class="fas fa-angle-double-right"></i>Details
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>5</td>
-                    <td>Category Five</td>
-                    <td>July 10 2019</td>
-                    <td>
-                      <a href="details.html" class="btn btn-secondary">
-                        <i class="fas fa-angle-double-right"></i>Details
-                      </a>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>6</td>
-                    <td>Category Six</td>
-                    <td>September 02 2019</td>
-                    <td>
-                      <a href="details.html" class="btn btn-secondary">
-                        <i class="fas fa-angle-double-right"></i>Details
-                      </a>
-                    </td>
-                  </tr>
+              {% endfor %}
               </tbody>
             </table>
           </div>

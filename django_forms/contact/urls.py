@@ -18,6 +18,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('contact/', views.contact),
+    path('', views.contact),
+    path('snippet/', views.snippet_detail, name="model_form"),
 
 ]

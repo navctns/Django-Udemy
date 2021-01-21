@@ -20,5 +20,5 @@ class AddCategoryForm(forms.ModelForm):
         fields = ['title']
 
         widgets = {
-            'title':forms.TextInput(attrs= {'class':'form-control'}),
+            'title':forms.TextInput(attrs= {'class':'form-control mx-auto mb-2'}),
         }
