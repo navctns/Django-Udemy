@@ -291,6 +291,12 @@
       </div>
     </div>
   </div>
+<script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  <script>
+    //Get the current Year for the copyright
+    $('#year').text(new Date().getFullYear());
+    CKEDITOR.replace('editor1');
+  </script>
 {% endblock %}
 
 

@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from .forms import AddCategoryForm
 from django.views.generic.edit import FormView
 from .models import Category
+from django.http import JsonResponse
 class CategoriesView(TemplateView):
     """Main Dashboard view"""
 
@@ -15,6 +16,7 @@ class CategoriesView(TemplateView):
         cats = cat_objs
         context["cats"] = cats
         return context
+
 
 # class AddCategoryFormView(FormView):
 #
@@ -41,3 +43,29 @@ def add_category(request):
 
     return render(request, 'dashboard_1.html',{'form':form})
     # return redirect('dashboard',{'form':form})
+
+def delete_category(request,pk):
+    """Delete a category"""
+
+    cat = Category.objects.get(pk=pk)
+    cat.delete()
+
+    return redirect('cat_list')
+
+# def search_category(request):
+#     """Search for a category with letters or words"""
+#     if request.method == 'POST':
+#         print('entering.....')
+#         name = request.POST.get('search_txt')
+#         cats = []
+#         cat_search_lst = Category.objects.filter(title__contains= name)
+#
+#         print(name)
+#         return redirect('cat_list',{'cats':cat_search_lst})
+#     # return render(request, 'category_search.html',{'cat_search_lst':cat_search_lst})
+
+# def category_search_result
+
+def search_category(request):
+    """Search for a category with letters or words using AJAX"""
+    return JsonResponse({'Hello':'Yep'})
